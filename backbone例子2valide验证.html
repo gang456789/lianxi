@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+	<script type="text/javascript" src="http://backbonejs.org/backbone-min.js"></script>
+
+	<link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+	<table id="js-id-gists" class="table">
+		<thead>
+			<th>description</th>
+			<th>URL</th>
+			<th>created_at</th>
+		</thead>
+		<tbody></tbody>
+	</table>
+	<script type="text/javascript">
+		var Gist = Backbone.Model.extend({
+				url: 'https://api.github.com/gists/public',
+				parse: function (response) {
+					return (response[0]);
+				},
+				defaults: {
+					website: 'dmyz'
+				},
+				validate: function (attrs) {
+					console.log("attrs的数据是")
+					console.log(attrs);
+					if (attrs.website == 'dmyz') {
+						return 'Website Error';
+					}
+				}
+			}),
+			gist = new Gist();
+
+		gist.on('invalid', function (model, error) {
+			console.log("model的数据是")
+			console.log(model);
+			alert(error);
+		});
+		gist.on('change', function (model) {
+			var tbody = document.getElementById('js-id-gists').children[1],
+				tr = document.getElementById(model.get('id'));
+			if (!tr) {
+				tr = document.createElement('tr');
+				tr.setAttribute('id', model.get('id'));
+			}
+			tr.innerHTML = '<td>' + model.get('description') + '</td><td>' + model.get('url') + '</td><td>' + model.get(
+				'created_at') + '</td>';
+			tbody.appendChild(tr);
+		});
+		gist.save();
+		gist.fetch();
+	</script>
+</body>
+
+</html>

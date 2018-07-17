@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>带取消小按钮的输入框</title>
+	<script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script>
+		$(window).on('load', function () {
+			$("input").focus(function () {
+				$(this).parent().children(".input_clear").show();
+			});
+			$("input").blur(function () {
+				if ($(this).val() == '') {
+					$(this).parent().children(".input_clear").hide();
+				}
+			});
+			$(".input_clear").click(function () {
+				$(this).parent().find('input').val('');
+				$(this).hide();
+			});
+			console.log(2222222)
+			$(document).keydown(function (event) {
+				console.log(44444444)
+				var e = event || window.event || arguments.callee.caller.arguments[0];
+				if (e && e.keyCode == 38) {
+					console.log('向上')
+				}
+				if (e && e.keyCode == 40) {
+					console.log('向下')
+				}
+			});
+		});
+</script>
+
+	<!-- <script>
+		$(function () {
+			console.log(222222222222)
+			$(document).keydown(function (event) {
+				console.log(44444444)
+				var e = event || window.event || arguments.callee.caller.arguments[0];
+				if (e && e.keyCode == 38) {
+					console.log('向上')
+				}
+				if (e && e.keyCode == 40) {
+					console.log('向下')
+				}
+			});
+		})
+	</script> -->
+	<style>
+
+	</style>
+</head>
+
+<body>
+	<div class="ddd">
+
+	</div>
+	<div style="display:inline-block;position:relative;">
+		<div style="position:absolute;right:2px;top:-2px;cursor:pointer;display:none;" class="input_clear"><i class="">X</i></div>
+		<input type="text" placeholder="店名/手机号码" class="input-text w200 " name="keyword" id="keyword" style="height:35px;">
+	</div>
+	<input style="text-align:center" />
+	<form action="">
+		<input type="text">
+	</form>
+</body>
+<script>
+	jQuery.fn.myPlugin = function(options) { 
+		$options = $.extend({ 
+			html: "no messages", 
+			css: { 
+			"color": "red", 
+			"fontSize":"14px" 
+		}},options); 
+		console.log(this);
+		console.log($(this));
+		return $(this).css({"color": $options.css.color,"font-size":$options.css.fontSize}).html($options.html); 
+	} 
+	$('.ddd').myPlugin({html:"So easy,yes?",css:{"color":"green","fontSize":"40px"}});
+	var sss = {
+		aa:'11',
+		bb:'22',
+		cc:'33'
+	}
+	var ggg = {
+		qq:55,
+		rr:'ttt',
+		yy:'uu'
+	}
+	var asd = $.extend(sss,ggg)
+	console.log(asd);
+	console.log(sss);
+	console.log(ggg);
+	var ss2 = {
+		aa:'11',
+		bb:'22',
+		cc:'33'
+	}
+	var gg2 = {
+		aa:55,
+		rr:'ttt',
+		yy:'uu'
+	}
+	var as2 = $.extend(ss2,gg2)
+	console.log(as2);
+	console.log(ss2);
+	console.log(gg2)
+</script>
+
+</html>

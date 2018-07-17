@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+    <title>moment</title>
+    <script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="./moment.js"></script>
+    <script>
+        $(window).on('load', function () {
+            $('#test').text('666');
+            console.log($('#test').context);
+            console.log($('#test'));
+            console.log(moment());
+            console.log(moment().add(7, 'days'));
+            var date = '2033-02-23';
+            console.log(moment('2033-02-23').toDate());
+            console.log(moment('2033-09-25 22:12:32').format('YYYY年MM月DD日 HH:mm:ss'));
+            console.log(moment('2033-02-23').date());
+            console.log(moment().add(7, 'days'));
+            var momentdate = moment(date, "YYYY-MM-DD");
+            console.log(momentdate);
+            var mondate = moment('2033-02-23').add(5, 'days').format('YYYY-MM-DD');
+            // var mondate = momentdate.add(2, 'days').format('YYYY-MM-DD');
+            console.log(mondate);
+            var test = moment('2010-10-20').isSame('2010-10-20');
+            console.log(test);
+            var time = moment('2010-10-28', "YYYY-MM-DD");
+            for (var i = 0; i < 5; i++) {
+                var day = time.add(i, 'days').format('YYYY-MM-DD');
+                console.log(day);
+            }
+            console.log(moment().format("LLLL"));
+            console.log(moment().format("llll"));
+            // console.log(moment().caledar());
+        });
+    </script>
+    <style>
+        /* #test{
+            height: 
+        } */
+        .ifr{
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='test'>
+        
+    </div>
+    <!-- <iframe class="ifr" src="./test2.html" frameborder="0"></iframe> -->
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>buggest下拉框</title>
+	<script src="./public/jquery-1.9.1.min.js"></script>
+	<script src="./public/bootstrap.min.js"></script>
+	<script src="./public/bootstrap-suggest.js"></script>
+	<link rel="stylesheet" href="./public/bootstrap.min.css">
+	<script>
+		$(window).on('load', function () {
+			var params = [
+				{value:"AnJusheng"},
+				{value:'BaiPing'},
+				{value:"ChenBo"},
+				{value:"DengLei"},
+				{value:"FangHui"},
+				{value:"GaoLi"},
+				{value:"HuangManNi"},
+			]
+			$("#mbGroup").bsSuggest({
+				data: {
+					'value': params
+				},
+				listStyle: {
+					'overflow': 'left',
+					
+				},
+				ignorecase:true,
+				"listAlign": "left"
+			});
+		});
+		
+</script>
+
+	<style>
+
+	</style>
+</head>
+
+<body>
+	<div class="ddd">
+		<div class="input-group" style="width:200px;">
+			<input type="text" class="form-control" id="mbGroup" required="required" maxlength="50">
+			<div class="input-group-btn">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">  
+				<span class="caret"></span>  
+				</button>
+				<ul class="dropdown-menu dropdown-menu-right" role="menu">
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>登录</title>
+	<!-- <script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script src="./clockpicker/clockpicker.js"></script>
+	<link rel="stylesheet" href="./clockpicker/clockpicker.css"> -->
+	<link href="https://cdn.bootcss.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<!-- ClockPicker样式表 -->
+	<link rel="stylesheet" href="./clockpicker/clockpicker.css">
+	<!-- <link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css"> -->
+	<!-- jQuery和引导脚本 -->
+	<script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="assets/js/jquery.min.js"></script> -->
+	<script src="https://cdn.bootcss.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+	<!-- <script type="text/javascript" src="assets/js/bootstrap.min.js"></script> -->
+	<!-- ClockPicker脚本 -->
+	<script src="./clockpicker/clockpicker.js"></script>
+	<!-- <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script> -->
+
+
+	<script type="text/javascript">
+		$('.clockpicker').clockpicker({
+			placement: 'top',
+			align: 'left',
+			donetext: 'Done'
+		});
+	</script>
+</head>
+
+<body>
+	<div class="input-group clockpicker">
+		<input type="text" class="form-control" value="18:00">
+		<span class="input-group-addon">
+        	<span class="glyphicon glyphicon-time"></span>
+		</span>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>first example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/avalon2@2.2.8/dist/avalon.js"></script>
+    <script>
+        var vm = avalon.define({
+            $id: "test",
+            name: "司徒正美",
+            obj: {
+                title: '普通 ',
+                algin: 'left'
+            },
+            array: [11, 22, 33],
+            Array: [{
+                width: 1
+            }, {
+                height: 2
+            }],
+            Obj: {
+                title: '普通 ',
+                algin: 'left'
+            },
+            toggle: true,
+            active: {
+                title: '激活'
+            },
+            cssArray: [{
+                width: 100
+            }, {
+                height: 50
+            }, {
+                border: '1px solid #5cb85c'
+            }],
+            cssobj: {
+                backgroundColor: '#3bb0d0',
+                width: 300,
+                height: 50,
+                'text-align': 'center'
+            },
+            cssactive: {
+                color: 'red'
+            },
+            aaa:{
+                bbb:{
+                    ccc:'test'
+                }
+            },
+            dd:{
+                ee:'哈哈'
+            },
+            ifShow: function (aaa, bbb, ccc) {
+                var obj = aaa[bbb]
+                if (obj) {
+                    return obj[ccc]
+                }
+                return ''
+            },
+            ifshow: function(dd,ee){
+                var obj = dd[ee]
+                if (obj) {
+                    return obj
+                }
+                return 'error'
+            },
+            vis: true,
+            model:'model',
+            bounce:'boumce',
+            argsClick:function(e){
+                console.log(e);
+            }
+        })
+        setTimeout(function () {
+            vm.array.set(0, 444)
+        }, 5000)
+    </script>
+</head>
+
+<body ms-controller="test">
+    <input ms-duplex="@name">
+    <span ms-attr="@obj">sss</span>
+    <p>Hello,{{@name}}!</p>
+    <ul>
+        <li ms-for="($index,el) in @array">{{$index}}--{{el}}</li>
+    </ul>
+    <span :attr="@Array">直接引用数组</span><br/>
+    <span :attr="[@Obj, @toggle && @active ]" :click="@toggle = !@toggle">选择性添加多余属性或重写已有属性</span>
+    <div :css="@cssArray">直接引用数组</div>
+    <div :css="[@cssobj, @toggle && @cssactive ]" :click="@toggle = !@toggle">选择性添加多余属性或重写已有属性</div>
+    <div ms-if="@aaa.bbb">
+        {{@ifShow(@aaa, 'bbb', 'ccc')}}数据
+    </div>
+    <div ms-if="true">
+        {{@ifshow(@dd, 'ee')}}嘿嘿
+    </div>
+    <div :visible="@vis">{{@obj.title}}</div>
+    <input ms-duplex="@model"/>{{@model}}
+    <input ms-duplex="@bounce | debounce(3000)"/>{{@bounce}}
+    <div ms-click="@argsClick($event)">点我</div>
+</body>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>XDate</title>
+	<script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script src="./xdate.js"></script>
+	<script>
+		$(window).on('load', function () {
+			var startTime = "2017-12-01 08:00";
+			var endTime = "2017-12-01 12:00";
+			// var thanksgiving = new XDate(startTime);
+			// var christmas = new XDate(endTime);
+			// var arr = [];
+			// var d = thanksgiving;
+
+			// while (d < christmas) {
+			// 	d.addMinutes(20);
+			// 	console.log(d.toString(" h:mm"));
+			// 	arr.push(d.toString(" h:mm"));
+			// }
+			// console.log(arr)
+			time(startTime,endTime,20);
+			function time(starttime, endTime, inteval) {
+				var thanksgiving = new XDate(starttime);
+				var christmas = new XDate(endTime);
+				var arr = [];
+				var center = thanksgiving;
+				while (center < christmas) {
+					arr.push(center.toString(" h:mm"));
+					center.addMinutes(inteval);
+				}
+				console.log(arr)
+			}
+		});
+	</script>
+	<script>
+		var startTime = "2017-12-01 14:04";
+		var thanksgiving = new XDate(startTime);
+		// thanksgiving.addMinutes(20);
+		// thanksgiving.addMinutes(-40);
+		// console.log(thanksgiving.getHours());
+		// console.log(thanksgiving.toTimeString());
+		// console.log(thanksgiving.toString("HH:mm"));
+		var aa =  new XDate();
+		console.log(thanksgiving);
+		console.log(aa);
+		console.log(aa.diffSeconds(thanksgiving));
+		console.log(thanksgiving.diffSeconds(aa));
+		if (thanksgiving.diffSeconds(aa) > 0) {
+			console.log(3333)
+		} else {
+			console.log(777);
+		};
+	</script>
+	<script>
+		var time = "2017-12-01 14:04";
+		console.log(new XDate(time));
+		console.log(new XDate(time).toString('yy-MM-dd'));
+		console.log(new XDate(time).toString('hh:mm'));
+		console.log(new XDate(time).toString('HH:mm'));
+		console.log(new XDate(time).toString('yyyy-MM-dd HH:mm'));
+		var Time = "2017-12-02 16:03";
+		console.log(new XDate(time).diffSeconds(new XDate(Time)));   //前小后大为正
+		console.log(new XDate(Time).diffSeconds(new XDate(time)));   
+		console.log(new XDate(time).addMinutes('20').toString('yyyy-MM-dd HH:mm'));
+		console.log(new XDate(time).getMinutes());
+	</script>
+	<script>
+		var tmp = Date.parse(new Date()).toString();
+		tmp = tmp.substr(0, 10);
+		console.log(new Date())
+		console.log(new XDate(new Date()).toString('yy-MM-dd HH:mm'))
+		console.log(Date.parse(new Date()))
+		console.log(new XDate(Date.parse(new Date())).toString('yy-MM-dd HH:mm'))
+		console.log(Date.parse(new Date()).toString())
+		console.log(new XDate(Date.parse(new Date()).toString()).toString('yy-MM-dd HH:mm'))
+		console.log(new XDate(tmp).toString('yy-MM-dd HH:mm'))
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>

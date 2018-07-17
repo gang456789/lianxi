@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>   
+<script src="./template.js" type="text/javascript" charset="utf-8"></script> 
+    <script>
+        window.onload=function() {
+            var aa = 'aa|bb|cc|dd';
+            var bb = '|22||44';
+            var aaa = aa.split("|");
+            var bbb = bb.split("|");
+            console.log(aaa);
+            console.log(bbb); 
+            var str = '';
+            console.log(aaa[0])
+            for (var i=0;i<aaa.length;i++) {
+				// if (value[i]) {
+                // str = str + item[i]+'('+value[i]+ ')'  
+                // } else {
+                // str = str + item[i]+value[i]  
+                // }
+				if (bbb[i]&&bbb[i] != 'undefined') {
+                str = str + aaa[i]+'('+bbb[i]+ ')'  
+                } else {
+                str = str + aaa[i] 
+                }
+			}   
+            console.log(str)
+        }
+    </script>
+</head>
+<body>
+    <!-- <div id="user_info"></div> 
+    <script type="text/html" id="user_tmpl"> 
+    <div>姓名：<span>{{name}}</span></div> 
+    <div>性别： 
+        <span>{{if sex==0}}女{{else}}男{{/if}}</span> 
+    </div> 
+    <div>性别：<span>{{getSexName name sex}}</span></div> 
+    <div>学校：<span>{{school}}</span></div> 
+</script> 
+<script type="text/javascript"> 
+    var data = { 
+        name: "小明", 
+        sex: 1, 
+        school: "新华小学" 
+    }; 
+    template.helper("getSexName", function(arg1, arg2) { 
+        // if (arg2 == "0") { 
+        //     return "女" + arg1; 
+        // } else { 
+        //     return "男" + arg1; 
+        // } 
+        console.log(arg1);
+        return(arg1 + "---" + arg2);
+    }); 
+    var user = template("user_tmpl", data); 
+    document.getElementById("user_info").innerHTML = user; 
+</script>  -->
+    
+</body>
+
+</html>

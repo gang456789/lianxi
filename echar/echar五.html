@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>echar入门</title>
+	<script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script src="./echarts.common.min.js"></script>
+	<script>
+		$(window).on('load', function () {
+			
+		});
+	</script>
+</head>
+
+<body>
+	<div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // // 指定图表的配置项和数据
+        // var option = {
+        //     xAxis: {
+        //         type: 'category',
+        //         data: ['Matcha Latte', 'Milk Tea', 'Cheese Cocoa', 'Walnut Brownie']
+        //     },
+        //     yAxis: {},
+        //     series: [
+        //         {
+        //             type: 'bar',
+        //             name: '2015',
+        //             data: [89.3, 92.1, 94.4, 85.4]
+        //         },
+        //         {
+        //             type: 'bar',
+        //             name: '2016',
+        //             data: [5.8, 89.4, 91.2, 76.9]
+        //         },
+        //         {
+        //             type: 'bar',
+        //             name: '2017',
+        //             data: [97.7, 83.1, 92.5, 78.1]
+        //         }
+        //     ]
+        // }
+        // // 使用刚指定的配置项和数据显示图表。
+        // myChart.setOption(option);
+
+        myChart.setOption({
+                    xAxis: {
+                        // type: 'category',
+                        data: ['Matcha Latte', 'Milk Tea', 'Cheese Cocoa', 'Walnut Brownie']
+                    },
+                    yAxis: {},
+                    series: [
+                        {
+                            type: 'bar',
+                            name: '2015',
+                            data: [89.3, 92.1, 94.4, 85.4]
+                        },
+                        {
+                            type: 'bar',
+                            name: '2016',
+                            data: [5.8, 89.4, 91.2, 76.9]
+                        },
+                        {
+                            type: 'bar',
+                            name: '2017',
+                            data: [97.7, 83.1, 92.5, 78.1]
+                        }
+                    ]
+            })     
+    </script>
+</body>
+
+</html>

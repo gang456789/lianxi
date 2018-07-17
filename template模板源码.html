@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>登录</title>
+	<script src="./public/jquery-1.9.1.min.js"></script>
+	<script type="js/html" id="Template">  
+		<div>
+			{title}
+			<div class="{className}">
+				{content}
+				<span>
+					{title}
+				</span>
+			</div>
+			{haha}
+		</div>
+	</script>
+	<script>
+		//注明，这是es5的语法
+		var arr = [
+			{
+				title:'模板标题1',
+				className:'模板class名字1',
+				content:'模板内容1',
+				haha:'哈哈哈1'
+			},
+			{
+				title:'模板标题2',
+				className:'模板class名字2',
+				content:'模板内容2',
+				haha:'哈哈哈2'
+			},
+			{
+				title:'模板标题3',
+				className:'模板class名字3',
+				content:'模板内容3',
+				haha:'哈哈哈3'
+			}
+		];
+		var htmlcontent = '';
+		var Templates = document.getElementById('Template').innerHTML;
+		for (var k=0;k<arr.length;k++){
+			htmlcontent += Templates.replace(/{title}/g,arr[k].title)  //g表示全局，模板中的多个title都会替换掉
+				.replace(/{className}/,arr[k].className) //不加g表示只匹配一次
+				.replace(/{content}/,arr[k].content)
+				.replace(/{haha}/,arr[k].haha)
+		}
+		$(function(){
+			$('#ddd').append(htmlcontent)
+		})
+	</script>
+	<script>
+		document.onkeydown = function(){
+			if(window.event && window.event.keyCode == 123) {
+				alert("F12被禁用");
+				event.keyCode=0;
+				event.returnValue=false;
+			}
+			if(window.event && window.event.keyCode == 13) {
+				alert("13被禁用");
+				window.event.keyCode = 505;
+			}
+			if(window.event && window.event.keyCode == 8) {
+				alert(str+"\n请使用Del键进行字符的删除操作！  88");
+				window.event.returnValue=false;
+			}
+		}
+		document.oncontextmenu = function (event){
+			if(window.event){
+				event = window.event;
+			}
+			try{
+				var the = event.srcElement;
+					if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+					return false;
+				}
+					return true;
+				}
+			catch (e){
+				return false;
+			}
+		}
+	</script>
+	<style>
+
+	</style>
+</head>
+
+<body>
+	<div id="ddd">
+		
+	</div>
+</body>
+
+</html>

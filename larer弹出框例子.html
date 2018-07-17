@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>layer</title>
+	<script type="text/javascript" src="jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="layer/layer.js"></script>
+	<link href="iconfont/iconfont.css" type="text/css" rel="stylesheet">
+	<link href="bootstrap.min.css" type="text/css" rel="stylesheet">
+	<link href="bootstrap.min.js" type="text/css" rel="stylesheet">
+	<style type="text/css">
+		.layui-layer-dialog .layui-layer-content{
+			padding-top: 60px;
+		}
+		
+		.layui-layer-btn{
+			padding-bottom: 40px;
+		}
+		.layui-layer-btn .layui-layer-btn0{
+			/*background-color:#fff; 
+			border: 1px solid #dedede;
+			color: #333;*/
+			background-color:#1ab394; 
+			border:1px solid #1ab394;
+		}
+		/*.layui-layer-btn .layui-layer-btn1{
+			background-color:#1ab394; 
+			border:1px solid #1ab394;
+			color: #fff;
+		}*/
+	</style>
+</head>
+<body>
+	<button id="btn">删除弹窗</button>
+	<button id="btn2">添加成功</button>
+	<button id="btn3">警告弹窗</button>
+	<button id="btn4">失败弹窗</button>
+	
+</body>
+<script type="text/javascript">
+	$(document).ready(function () {
+		// $('#btn').click(function(){
+	// 	layer.confirm('<div class="col-lg-12"><div class="col-lg-12" style="text-align:center;"><i class="icon iconfont icon-jinggao" style="color:#ff0000;font-size:50px;"></i></div><div class="col-lg-12" style="margin-top:20px;text-align:center;">您确认要删除模板类别  XXXXXX 吗 ? 删除后该类别下所有模板将被 <span style="color:#ff0000;">删除</span></div></div>', {
+	// 	  btn: ['确定','取消'],
+	// 	  area: ['380px', ''],
+	// 	  title: false,
+	// 	  closeBtn: 0, 
+	// 	}, function(){
+	// 	  layer.msg('删除成功', {icon: 1});
+	// 	});
+	// });
+	$('#btn').click(function() {
+		removealert('你确认要删除XXX文件么','是','否',successfunction,failfunction)
+	})
+	// $('#btn2').click(function(){
+	// 	layer.confirm('<div class="col-lg-12"><div class="col-lg-12" style="text-align:center;"><i class="icon iconfont  icon-ok" style="color:#1ab394;font-size:50px;"></i></div><div class="col-lg-12" style="margin-top:20px;text-align:center;">模板添加成功！</div></div>', {
+	// 	  btn: ['确定'],
+	// 	  area: ['380px', ''],
+	// 	  title: false,
+	// 	  closeBtn: 0, 
+	// 	});
+	// });
+	// $('#btn2').click(function() {
+	// 	addsuccess(777777)
+	// })
+	// $('#btn3').click(function(){
+	// 	layer.confirm('<div class="col-lg-12"><div class="col-lg-12" style="text-align:center;"><i class="icon iconfont icon-jinggao" style="color:#ff0000;font-size:50px;"></i></div><div class="col-lg-12" style="margin-top:20px;text-align:center;">患者id不能为空</div></div>', {
+	// 	  btn: ['确定'],
+	// 	  area: ['380px', ''],
+	// 	  title: false,
+	// 	  closeBtn: 0, 
+	// 	});
+	// });
+	// $('#btn3').click(function() {
+	// 	alertwaring(444444)
+	// })
+	function removealert(msg,btn1,btn2,okfunction, nofunction) {
+		layer.confirm('<div class="col-lg-12"><div class="col-lg-12" style="text-align:center;"><i class="icon iconfont icon-jinggao" style="color:#ff0000;font-size:50px;"></i></div><div class="col-lg-12" style="margin-top:20px;text-align:center;">'+msg+'</div></div>', {
+		  btn: [btn1,btn2],
+		  area: ['380px', ''],
+		  title: false,
+		  closeBtn: 0, 
+		},okfunction);
+	}
+	function successfunction() {
+		layer.msg('删除成功', {icon: 1});
+	}
+	function failfunction() {
+		layer.msg('删除失败', {icon: 1});
+	}
+	function addsuccess(msg) {
+		layer.confirm('<div class="col-lg-12"><div class="col-lg-12" style="text-align:center;"><i class="icon iconfont  icon-ok" style="color:#1ab394;font-size:50px;"></i></div><div class="col-lg-12" style="margin-top:20px;text-align:center;">'+msg+'</div></div>', {
+		  btn: ['确定'],
+		  area: ['380px', ''],
+		  title: false,
+		  closeBtn: 0, 
+		});
+	}
+	function alertwaring(msg) {
+		layer.confirm('<div class="col-lg-12"><div class="col-lg-12" style="text-align:center;"><i class="icon iconfont  icon-ok" style="color:#1ab394;font-size:50px;"></i></div><div class="col-lg-12" style="margin-top:20px;text-align:center;">'+msg+'</div></div>', {
+		  btn: ['确定'],
+		  area: ['380px', ''],
+		  title: false,
+		  closeBtn: 0, 
+		});
+	}
+
+
+
+
+})
+
+	$('#btn4').click(function(){
+		layer.confirm('<div class="col-lg-12"><div class="col-lg-12" style="text-align:center;"><i class="icon iconfont icon-quxiao" style="color:#f3a536;font-size:50px;"></i></div><div class="col-lg-12" style="margin-top:20px;text-align:center;">保存失败</div></div>', {
+		  btn: ['确定'],
+		  area: ['380px', ''],
+		  title: false,
+		  closeBtn: 0, 
+		});
+	});
+</script>
+</html>

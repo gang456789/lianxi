@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>登录</title>
+	<script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			var content = $p.text()
+			$(".figcaption").each(function (i) {
+				var divH = $(this).height();
+				var $p = $("p", $(this)).eq(0);
+				while ($p.outerHeight() > divH) {
+					$p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+				};
+			});
+			window.onresize = function () {
+				$(".figcaption").each(function (i) {
+					var divH = $(this).height();
+					var $p = $("p", $(this)).eq(0);
+					while ($p.outerHeight() > divH) {
+						$p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+					};
+				});
+			}
+		});
+	</script>
+	<style>
+		.figcaption {
+			background: #EEE;
+			width: 20%;
+			height: 3em;
+			margin: 1em;
+		}
+
+		.figcaption p {
+			margin: 0;
+			line-height: 1.5em;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="figcaption">
+		<p>
+			You probably can't do it (currently?) without a fixed-width font like Courier. With a fixed-width font every letter occupiesthe
+			same horizontal space, so you could probably count the letters and multiply the result with the current font sizein ems
+			or exs. Then you would just have to test how many letters fit on one line, and then break it up.
+		</p>
+	</div>
+</body>
+
+</html>

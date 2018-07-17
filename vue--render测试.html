@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>vue-render测试</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body>
+	<div id="app">
+        <elem></elem>
+   	</div>  
+	<div id="app_e">
+		<elementt></elementt>
+	</div>
+	<div id="app_a">
+		<elementa>
+			<h1 slot="header"><span>About Me</span></h1>
+            <p>Here's some page content</p>
+            <p slot="footer">Copyright 2016 Evan You</p>
+            <p>If I have some content down here</p>
+		</elementa>
+	</div>
+</body>
+
+</html>
+<script>
+	Vue.component('elem', {
+		render: function(createElement) {
+			var self = this;
+			console.log(createElement)
+			return createElement('div',{
+				'class': {
+					foo: true,
+					bar: false
+				},
+				style: {
+					color: 'red',
+					fontSize: '14px'
+				},
+				attrs: {
+					id: 'foo'
+				},
+				domProps: {
+					innerHTML: '这是内容'
+				}
+			});
+			
+		}
+	});
+	new Vue({
+		el: '#app'
+	});
+</script>
+<script>
+	Vue.component('elementt', {
+		render: function(createElement) {
+			return createElement('div', {
+				'class': {
+					show: this.show
+				},
+				attrs: {
+					id: 'elem'
+				},
+				on: {
+					click: this.handleClick
+				}
+			}, '文本');
+		},
+		data: function() {
+			return {
+				show: true
+			}
+		},
+		methods: {
+			handleClick: function() {
+				console.log('clicked!');
+			}
+		}
+	});
+	new Vue({
+		el: '#app_e'
+	});
+</script>
+<script>
+	Vue.component('elementa', {
+		render: function(createElement) {
+			console.log(this)
+			var header = this.$slots.header,//返回由VNode组成的数组
+				body = this.$slots.default,
+				footer = this.$slots.footer;
+			return createElement('div', [
+				createElement('header', header),
+				createElement('main', body),
+				createElement('footer', footer)
+			])
+		}
+	});
+	new Vue({
+		el: '#app_a'
+	});
+</script>

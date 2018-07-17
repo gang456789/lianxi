@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>键盘控制上下键/title>
+		<script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+		<script>
+			$(function () {
+				console.log(222222222222)
+				$(document).keydown(function (event) {
+					console.log(44444444)
+					var e = event || window.event || arguments.callee.caller.arguments[0];
+					if (e && e.keyCode == 38) {
+						console.log('向上')
+					}
+					if (e && e.keyCode == 40) {
+						console.log('向下')
+					}
+				});
+			})
+		</script>
+</head>
+
+<body>
+
+</body>
+
+</html>

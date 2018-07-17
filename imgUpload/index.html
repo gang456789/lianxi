@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>图片上传</title>
+    <script src="../public/jquery-1.9.1.min.js"></script>
+    <script src="../public/jqueryForm/jquery.form.js"></script>
+	<style>
+        #previewImg img{
+            width: 200px;
+            height: 200px;
+        }
+	</style>
+</head>
+
+<body>
+    <form class="user_data_submit" enctype="multipart/form-data">  
+        <div class="userHeadImg dropzone-previews" id="previewImg">
+            <img src="./111.png">
+        </div>
+        <div class="userHeadEdit"> 
+            <textarea rows="5" id='uploadTextarea' style="width: 0px;height:0px;opacity: 0;"  name="param"></textarea>
+            <div id="btnUpload" class="btn btn-default btn-outline"> 
+                <!-- <i class="iconfont icon-shangchuan1"></i>  -->
+                上传
+                <input id="inputFile" type="file"  accept="image/jpg, image/jpeg, image/png" name="file1"/>
+            </div>
+        </div>
+    </form>
+    <div>
+        <ul id="ulLi">
+            <li>1111111</li>
+            <li>2222222</li>
+            <li>3333333</li>
+            <li>4444444</li>
+            <li>5555555</li>
+            <li>6666666</li>
+            <li>7777777</li>
+        </ul>
+    </div>
+</body>
+<script>
+    var obj = {
+        'Cmd':'C0071',
+        'Token':'96014706-8e84-4c62-920a-20e6cc3d8b076585',
+        'UserName': 'ChartCheck',
+        'UserID':'9',
+        'Param':{
+            UserID:'9',
+            Type:"1"
+        }
+    }
+    $("#inputFile").on('change',function(){
+        obj.Param.Type = '1'
+        $("#uploadTextarea").val(JSON.stringify(obj))
+        submitFiles({
+            formID:"userForm",
+            rules:[".jpeg",".jpg",".png",]
+        })
+    })
+    $(window).on('load', function () {
+            
+    });
+    var submitFiles = function(conf) {
+        var submitFormConfig = {
+            url: 'http://47.94.238.41:8077/InterfaceFile.aspx',
+            async:true,
+            type: "post",
+            success: function (data) {
+                var data = JSON.parse(data)
+                $("#previewImg").find('img').attr('src','http://47.94.238.41:8077' + data.Result)
+            },
+            beforeSerialize: function () {
+                console.log(3330)
+            },
+            beforeSend:function(xhr){
+                console.log(4440)
+            },
+            complete:function(){
+                console.log(550)
+            },
+            error:function(xhr,textStatus){
+                console.log(660)
+            }
+        };
+        $(".user_data_submit").ajaxSubmit(submitFormConfig);
+    }
+    
+</script>
+<script>
+    var ddd = {
+        aaa:'aa1',
+        bbb:'bb2',
+        ccc:'cc3'
+    }
+    var eee = [11,22,33,44,55,66]
+    for(var test in ddd) {
+        console.log(test);
+        console.log(ddd[test])
+    }
+    for(var arr in eee) {
+        console.log(arr);
+        console.log(eee[arr]);
+    }
+    
+    $.each($('#ulLi li'),function(index,val){
+        console.log(val)
+        $(val).css('color','red')
+    })
+    $('#ulLi').append('<li>rrrrr</li>',{"color":"green"})
+</script>
+</html>

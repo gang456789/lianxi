@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>jquery源码测试</title>
+	<script src="./jquery-2.0.3.js"></script>
+	<script>
+		/**这里统一说明
+		 * 凡是$.aaaa()均为工具方法
+		 * 凡是$('.aaa').bbb()均为实例方法
+		 * */
+
+		/**
+		 * 当为true是$(function(){}) 不走
+		 * */
+		/**
+		 * 当为false是$(function(){}) 才走 
+		 * 这里可是使用
+		 * setTimeout(function(){
+			$.holdReady(false);
+			},2000)
+			来让ready函数延迟加载
+		 * */
+		$.holdReady(true);
+		$.holdReady(false);
+		$(function(){
+			console.log('开始走啦');
+		})
+		/**
+		 * 此处说明使用$.type() 可以判断的更准确，例如当使用typeof判断数组和对象时返回的都是object
+		 * */
+		function sss(){
+			console.log('这是一个函数');
+		}
+		var array = ['a','b','c'];
+		var obj = {
+			aa:'11',
+			bb:'22',
+			cc:'33'
+		}
+		console.log($.type(null));
+		console.log($.type(undefined));
+		console.log( $.type(sss) );
+		console.log($.type(array));
+		console.log($.type(obj));
+		console.log(typeof array);
+		console.log(typeof obj);
+		/**
+		 * $.merge(array1,array2) 是针对数组合并，对象不行
+		 * */
+		var objone = {
+			name:'张三',
+			age:20,
+			do:{
+				ss:'ssss',
+				dd:'ddddd'
+			}
+		}
+		var objtwo = {
+			name:'李四',
+			doo:{
+				ss:'ssssgg',
+				dd:'dddddbb'
+			}
+		}
+		var array1 = ['1','3','5'];
+		var array2 = ['0','2','4',{
+			haha:'hhh',
+			oooo:'oooo'
+		}];
+		console.log($.merge(objone,objtwo));
+		console.log($.merge(array1,array2));
+		/**
+		 * $.isNumeric()是在isNaN()的基础上对无穷大右做了处理，超过无穷大即为false
+		 * */
+		console.log( $.isNumeric(333) );
+		console.log( $.isNumeric(Number.MAX_VALUE + Number.MAX_VALUE) );
+		console.log( !isNaN(333) );
+		console.log( !isNaN(Number.MAX_VALUE + Number.MAX_VALUE) )
+		/**
+		 * $.inArray(val,array,deginindex) 判断某个元素是否在数组中  经常和array.splice(index,1)配合使用
+		 * val -- The value to search for
+		 * array -- An array through which to search
+		 * deginindex --从哪个位置开始查找，不写默认是0，即从开头开始找
+		 * */
+		var array3 = ['a','b','c','d'];
+		console.log( $.inArray('b',array3) );
+		console.log( $.inArray('b',array3,2) );
+		console.log( $.inArray('e',array3) );
+		/**
+		 * $.grep(array,function(val,index){},Booleans)  本方法是数组的过滤方法，function里面写的是过滤的条件，
+		 * Booleans为false或者不写，然后返回的结果就是我们处理过后的数据
+		 * Booleans为true，返回的结果就是我们过滤的数据
+		 * */
+		var arr = [ 1, 9, 3, 8, 6, 1, 5, 9, 4, 7, 3, 8, 6, 9, 1 ];
+		arr = $.grep(arr, function( n, i ) {
+			return ( n !== 5 && i > 4 );
+		});
+	</script>
+	<script>	
+		/**
+		 * 字符串前后去空格原理，其中\s是匹配任何空白字符，包括空格、制表符、换页符等等
+		 * 如果要去除其他字符可以改变正则表达式其中过滤条件用[]中括号括起来
+		 * */
+		String.prototype.trim = function(){
+			return this.replace(/(^\s*)|(\s*$)/g, "");
+		}
+		var strone = '   ddd     ';
+		console.log('('+strone+')');
+		console.log('('+strone.trim()+')');
+		String.prototype.trim = function(){
+			//  return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");  这是jquery 1.9.0版本的正则
+			// jQuery还为了避免它没法解析全角空白，所以加多了一个判断："\uFEFF\xA0".trim() !== ""
+			return this.replace(/(^[\s0-9]*)|([\s0-9]*$)/g, "");
+		}
+		var strtwo = '   33ddd22     ';
+		console.log('('+strtwo+')');
+		console.log('('+strtwo.trim()+')');
+	</script>
+	<!-- <script>
+		$(function(){
+			function show(){
+				console.log(this);
+				alert(this);
+			}
+			$('#submit').click(show);
+			/**
+			 * $('#submit').off();函数为取消事件函数
+			 * 
+			 * 
+			 * */
+			$('#cancel').click(function(){
+				$('#submit').off();
+			});
+		})
+	</script> -->
+	<script>
+		/**
+		 * 
+		 * 下面函数的执行顺序是先弹出111，然后弹222，（，如果不加dfd.done(),正常是先弹222，然后弹1）,$.Callbacks()【函数回调】
+		 * */
+		 
+		var cb = $.Callbacks();
+		setTimeout(function(){
+			alert(111);
+			cb.fire();
+		},1000)
+		cb.add(function(){
+			alert(2222)
+		})
+	</script>
+	<script>
+		/**
+		 * 延迟函数，用来控制函数执行的顺序，和settimeout有关
+		 * 下面函数的执行顺序是先弹出1，然后弹222，（，如果不加dfd.done(),正常是先弹222，然后弹1）,此处说明一下
+		 执行顺序按照我们代码顺序执行了,$.Deferred()是基于$.Callbacks()实现的【函数回调】
+		 dfd.resolve()代表完成  dfd.resolve()代表成功
+		 * */
+		 
+		var dfd = $.Deferred();
+		setTimeout(function(){
+			alert(1);
+			dfd.resolve();
+		},1000)
+		dfd.done(function(){
+			alert(2222)
+		})
+	</script>
+	<script>
+		/**
+		* 
+		* 
+		* */
+		function aaa(){
+			var Dfd = $.Deferred();
+			Dfd.resolve();
+			return Dfd;
+		 }
+		function bbb(){
+			var Dfd = $.Deferred();
+			// Dfd.resolve(); //如果此处注释掉，alert将不会执行，这里是致状态为成功
+			Dfd.reject();	//这里是致状态为失败，未完成
+			return Dfd;
+		 }
+		 $.when(aaa(), bbb()).done(function(){
+			 alert('等到函数aaa和bbb都完成过后才会触发此函数，即执行这里')
+		 }).fail(function(){
+			 alert('等到函数aaa和bbb只要有一个失败就会触发此函数，即执行这里')
+		 })
+	</script>
+	<script>
+		/**
+		 * 
+		 * 
+		 * */
+		// var containter = document.createElement("div");
+		// containter.style.cssText = "border:0;width:0;height:0;position:absolute;top:0;left:-9999px;margin-top:1px";
+		// body.appendChild(containter);
+	</script>
+	<script>
+		/**
+		 * DOM元素与对象之间互相引用，大部分浏览器就会出现内存泄漏
+		 * 
+		 * */
+		// $('#div1').data('name','hello');  //此处的data可以用attr，prop来替换
+		// alert( $('div1').data('name') )
+
+		$(function(){
+			// var oDiv = document.getElementById('div1');
+			var obj = {name:'aaa',age:12,ss:"ggg"};
+			// oDiv.name = obj;  //dom元素引用了对象
+			// obj.age = oDiv;  //对象欧引用了dom元素，导致了内存泄露
+
+
+			// $('#div1').data('name',obj); //但是，用data不会导致内存泄漏
+			// console.log($('#div1').data('name'));
+
+
+			$('#div1').attr('ss',"assxac");
+			console.log($('#div1').attr('ss'));
+		})
+		//$('#div1').removeData('name',obj); 移除data属性
+		// jQuery.camelCase(key) 转驼峰  和 name = key.concat( key.map(jQuery.camelcase) )
+	</script>
+	<script>
+		/**
+		* queue 队列里面存的必须是函数
+		*  先进先出
+		* */
+		function aaa(){
+			alert(1)
+		}
+		function bbb(){
+			alert(2)
+		}
+		///////////////////////////这是工具方法
+		// $.queue(document,'ql','aaa');
+		// $.queue(document,'ql','bbb');
+		$.dequeue(document,'ql');   //  aaa()
+		$.dequeue(document,'ql');   //  bbb()
+
+		
+		//////////////////////////这是实例方法
+		$(document).queue('ql');
+		$(document).queue('ql');
+
+
+	</script>
+	<script>
+		/**
+		* 
+		*  
+		* */
+		
+	</script>
+</head>
+
+<body>
+	<div class="main">
+
+	</div>
+	<input type="button" value="提交" id="submit">
+	<input type="button" value="取消绑定" id="cancel">
+	<div id="div1">内容</div>
+</body>
+
+</html>

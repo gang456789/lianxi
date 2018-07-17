@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>登录</title>
+	<script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+	<link href="https://cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
+	<script>
+		$(window).on('load', function () {
+			$('#usertype').selectpicker({
+				'selectedText': 'cat'
+			});
+		});
+	</script>
+	<style>
+
+	</style>
+</head>
+
+<body>
+	<div class="form-group">
+		<!-- <label class="col-sm-3 control-label">客资类型：</label> -->
+		<div class="col-sm-4">
+			<select id="usertype" name="usertype" class="selectpicker  form-control" multiple data-live-search="false">
+               	<option value="0">苹果</option>
+                <option value="1">菠萝</option>
+                <option value="2">香蕉</option>
+                <option value="3">火龙果</option>
+                <option value="4">梨子</option>
+                <option value="5">草莓</option>
+                <option value="6">哈密瓜</option>
+                <option value="7">椰子</option>
+                <option value="8">猕猴桃</option>
+                <option value="9">桃子</option>                         
+            </select>
+		</div>
+	</div>
+	<input name="pwd" type="text" id="pwd" oncopy="return false" onpaste="return false" oncut="return false" oncontextmenu="return false" />
+	<input name="pwd" type="text" id="pwd" onpaste="return false"/>
+</body>
+
+</html>

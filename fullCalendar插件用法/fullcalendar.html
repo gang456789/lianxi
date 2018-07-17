@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>fullcalendar</title>
+	<script src="../public/jquery-1.9.1.min.js"></script>
+	<script src="./fullCalendar/moment.min.js"></script>
+	<script src="./fullCalendar/fullcalendar.min.js"></script>
+	<link href="./fullCalendar/fullcalendar.css" rel="stylesheet">
+	<script>
+		$(window).on('load', function () {
+			var param = {
+				getDate:"2018-05-11",
+				maxTime:"18:00",
+				minTime:"08:00",
+				slotDuration:"0:30:0"
+			}
+			init(param);
+		});
+		function init(fullcalendarParam){
+			$('#ddd').fullCalendar({
+				header: {
+					left: 'today prev,next',
+					center: 'title',
+					right: 'month,basicWeek'
+				},
+				buttonText : {
+					month : '月视图',
+					week : '周',
+					day : '日视图'
+				},
+				theme: true, 
+				timeFormat: 'H:mm',
+				allDaySlot:false,
+				allDayText: '预约时间',          
+				monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+				monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+				dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+				dayNamesShort: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+				axisFormat: 'H(:mm):00',
+				firstDay: 1,
+				slotEventOverlap: false,
+				aspectRatio:2.5,
+				// eventMouseover: function (event, jsEvent, view) {
+				// 	var headerInfo  = $(jsEvent.currentTarget).find('span').html()  ?$(jsEvent.currentTarget).find('span').html()  :"";
+				// 	var bodyInfo  = $(jsEvent.currentTarget).find('.fc-title').html() ? decodeURI($(jsEvent.currentTarget).find('.fc-title').html()):"";
+				// 	bodyInfo =headerInfo+'</br>' + bodyInfo.replace(/；/g, '</br>');
+				// 	$("#tipModel").children(".popover-content").html(bodyInfo );
+				// 	var $el = $(jsEvent.currentTarget);
+				// 	var offset = $el.offset();
+				// 	$("#tipModel").css("display","block");
+				// 	$("#tipModel").css("top",offset.top -  $("#tipModel").height() );
+				// 	$("#tipModel").css("left",offset.left );
+				// },
+				// eventMouseout: function (event, jsEvent, view) {
+				// 	// $("#tipModel").css("display",'none');
+				// },
+				minTime:fullcalendarParam.minTime,
+				maxTime:fullcalendarParam.maxTime,
+				defaultView: 'month',
+				firstHour: fullcalendarParam.minTime,
+				slotDuration: fullcalendarParam.slotDuration,
+				events:fullcalendarParam.events
+			});
+		}
+	</script>
+
+	<style>
+		/* #ddd{
+			width: 500px;
+			height: 900px;
+		} */
+	</style>
+</head>
+
+<body>
+	<div id="ddd">
+
+	</div>
+</body>
+
+</html>

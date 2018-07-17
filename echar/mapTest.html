@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+        <title>ECharts</title>
+        <!-- <link rel="stylesheet" type="text/css" href="css/main.css"/> -->
+        <script src="../public/jquery-1.9.1.min.js"></script>
+        <script src="./echarts.min.js"></script>
+        <script src="./china.js"></script>
+        <style>
+            #china-map, #test{width:1000px; height: 1000px;margin: auto;}
+            .dddd{
+                border:1px solid #ccc;
+                height: 0;
+                width: 110px;
+            }
+            .vvv{
+                width:150px;
+                height:100px;
+            }
+            .vvv>div{
+                
+            }
+        </style>
+    </head>
+    <body>
+        <div id="china-map"></div>
+        <div id="test"></div> 
+        <script>
+            var myChart = echarts.init(document.getElementById('china-map'));
+            var option = {
+                tooltip : {
+                    trigger: 'item',
+                        formatter:function(params)//数据格式
+                        {
+                            console.log(params)
+                            var relVal = '<div class="vvv"><div>';
+                            relVal += params.name+"<br/>";
+                            relVal += '<div class="dddd"></div>';
+                            relVal += ' 号码数量: ' + params.data.number+"<br/>";
+                            relVal += ' 模版数量: ' +params.data.moban+"<br/>";
+                            relVal += '</div></div>'
+                            return relVal;
+                        }
+                }, 
+                series : [
+                            {
+                                name: '随机数据',
+                                type: 'map',
+                                mapType: 'china',
+                                selectedMode : 'single',
+                                itemStyle:{
+                                    normal:{
+                                        label:{show:true},
+                                        borderWidth:1,//省份的边框宽度
+                                                        borderColor:'#f60',//省份的边框颜色
+                                                color:'#ece2df'//地图背景颜色
+                                        //areaStyle:{color:'#f60'}//设置地图颜色
+                                        },
+                                    emphasis:{
+                                        label:{show:true},
+
+                                    }
+                                },
+                                data:[
+                                    {name: '北京', selected:false,value:1,number:"2000个",moban:"1200个"},
+                                    {name: '天津', selected:false,value:2,number:"2000个",moban:"1200个"},
+                                    {name: '上海', selected:false,value:3,number:"2000个",moban:"1200个"},
+                                    {name: '重庆', selected:false,value:4,number:"2000个",moban:"1200个"},
+                                    {name: '河北', selected:false,value:5,number:"2000个",moban:"1200个"},
+                                    {name: '河南', selected:false,value:6,number:"2000个",moban:"1200个"},
+                                    {name: '云南', selected:false,value:7,number:"2000个",moban:"1200个"},
+                                    {name: '辽宁', selected:false,value:8,number:"2000个",moban:"1200个"},
+                                    {name: '黑龙江', selected:false,value:9,number:"2000个",moban:"1200个"},
+                                    {name: '湖南', selected:false,value:10,number:"2000个",moban:"1200个"},
+                                    {name: '安徽', selected:false,value:11,number:"2000个",moban:"1200个"},
+                                    {name: '山东', selected:false,value:12,number:"2000个",moban:"1200个"},
+                                    {name: '新疆', selected:false,value:13,number:"2000个",moban:"1200个"},
+                                    {name: '江苏', selected:false,value:14,number:"2000个",moban:"1200个"},
+                                    {name: '浙江', selected:false,value:15,number:"2000个",moban:"1200个"},
+                                    {name: '江西', selected:false,value:16,number:"2000个",moban:"1200个"},
+                                    {name: '湖北', selected:false,value:17,number:"2000个",moban:"1200个"},
+                                    {name: '广西', selected:false,value:18,number:"2000个",moban:"1200个"},
+                                    {name: '甘肃', selected:false,value:19,number:"2000个",moban:"1200个"},
+                                    {name: '山西', selected:false,value:20,number:"2000个",moban:"1200个"},
+                                    {name: '内蒙古', selected:false,value:21,number:"2000个",moban:"1200个"},
+                                    {name: '陕西', selected:false,value:22,number:"2000个",moban:"1200个"},
+                                    {name: '吉林', selected:false,value:23,number:"2000个",moban:"1200个"},
+                                    {name: '福建', selected:false,value:24,number:"2000个",moban:"1200个"},
+                                    {name: '贵州', selected:false,value:25,number:"2000个",moban:"1200个"},
+                                    {name: '广东', selected:false,value:26,number:"2000个",moban:"1200个"},
+                                    {name: '青海', selected:false,value:27,number:"2000个",moban:"1200个"},
+                                    {name: '西藏', selected:false,value:28,number:"2000个",moban:"1200个"},
+                                    {name: '四川', selected:false,value:29,number:"2000个",moban:"1200个"},
+                                    {name: '宁夏', selected:false,value:30,number:"2000个",moban:"1200个"},
+                                    {name: '海南', selected:false,value:31,number:"2000个",moban:"1200个"},
+                                    {name: '台湾', selected:false,value:32,number:"2000个",moban:"1200个"},
+                                    {name: '香港', selected:false,value:33,number:"2000个",moban:"1200个"},
+                                    {name: '澳门', selected:false,value:34,number:"2000个",moban:"1200个"}
+                                ]//各省地图颜色数据依赖value
+                            }
+                        ],
+                        dataRange: {
+                                    x: '-1000px',//图例横轴位置
+                                    y: '-1000px',//图例纵轴位置
+                                    splitList: [
+                                        {start:1, end:1, label: '北京', color: '#cfc5de'},
+                                {start:2, end:2, label: '天津', color: '#f1ebd1'},
+                                {start:3, end:3, label: '上海', color: '#feffdb'},
+                                {start:4, end:4, label: '重庆', color: '#e0cee4'},
+                                {start:5, end:5, label: '河北', color: '#fde8cd'},
+                                {start:6, end:6, label: '河南', color: '#e4f1d7'},
+                                {start:7, end:7, label: '云南', color: '#fffed7'},
+                                {start:8, end:8, label: '辽宁', color: '#e4f1d7'},
+                                {start:9, end:9, label: '黑龙江', color: '#e4f1d7'},
+                                {start:10, end:10, label: '湖南', color: '#fffed7'},
+                                {start:11, end:11, label: '安徽', color: '#fffed8'},
+                                {start:12, end:12, label: '山东', color: '#dccee7'},
+                                {start:13, end:13, label: '新疆', color: '#fffed7'},
+                                {start:14, end:14, label: '江苏', color: '#fce8cd'},
+                                {start:15, end:15, label: '浙江', color: '#ddceeb'},
+                                {start:16, end:16, label: '江西', color: '#e4f1d3'},
+                                {start:17, end:17, label: '湖北', color: '#fde8cd'},
+                                {start:18, end:18, label: '广西', color: '#fde8cd'},
+                                {start:19, end:19, label: '甘肃', color: '#fde8cd'},
+                                {start:20, end:20, label: '山西', color: '#fffdd6'},
+                                {start:21, end:21, label: '内蒙古', color: '#ddcfe6'},
+                                {start:22, end:22, label: '陕西', color: '#fad8e9'},
+                                {start:23, end:23, label: '吉林', color: '#fce8cd'},
+                                {start:24, end:24, label: '福建', color: '#fad8e8'},
+                                {start:25, end:25, label: '贵州', color: '#fad8e8'},
+                                {start:26, end:26, label: '广东', color: '#ddcfe8'},
+                                {start:27, end:27, label: '青海', color: '#fad8e9'},
+                                {start:28, end:28, label: '西藏', color: '#ddcfe6'},
+                                {start:29, end:29, label: '四川', color: '#e4f1d5'},
+                                {start:30, end:30, label: '宁夏', color: '#fefcd5'},
+                                {start:31, end:31, label: '海南', color: '#fad8e9'},
+                                {start:32, end:32, label: '台湾', color: '#fce8cd'},
+                                {start:33, end:33, label: '香港', color: '#dc9bbb'},
+                                {start:34, end:34, label: '澳门', color: '#e0f7cc'},
+                                
+                                    ]
+                                }
+            }
+            myChart.setOption(option);
+        </script>
+    </body>
+</html>

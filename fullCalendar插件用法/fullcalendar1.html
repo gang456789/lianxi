@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>fullcalendar</title>
+	<script src="../public/jquery-1.9.1.min.js"></script>
+	<script src="./fullCalendar/moment.min.js"></script>
+	<script src="./fullCalendar/fullcalendar.min.js"></script>
+	<link href="./fullCalendar/fullcalendar.css" rel="stylesheet">
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//国际化默认值为'en'，代表使用英文
+			var initialLangCode = 'en';
+			//初始化FullCalendar 
+			$('#calendar').fullCalendar({
+				//设置头部信息，如果不想显示，可以设置header为false
+				header: {
+					//日历头部左边：初始化切换按钮
+					left: 'prev,next today',
+					//日历头部中间：显示当前日期信息
+					center: 'title',
+					//日历头部右边：初始化视图
+					right: 'month,agendaWeek,agendaDay'
+				},
+				//设置是否显示周六和周日，设为false则不显示  
+				weekends: true,
+				//日历初始化时显示的日期，月视图显示该月，周视图显示该周，日视图显示该天，和当前日期没有关系
+				defaultDate: '2018-05-11',
+				//日程数据 
+				events: [
+					{
+						id: 1,
+						title: '这是一个all-day数据',
+						// allDay: true,
+						start: '2018-05-10'
+					},
+					{
+						id: 2,
+						title: '开始时间为12PM',
+						start: '2018-05-11 12:00'
+					},
+					{
+						id: 3,
+						title: '给一点颜色',
+						start: '2018-05-12',
+						color: 'red'
+					},
+					{
+						id: 4,
+						title: '使用className:done',
+						start: '2018-05-10 09:00',
+						end: '2018-05-13 18:00',
+						color: 'blue',
+						className: 'done'
+					},
+					{
+						id: 5,
+						title: '使用className:doing',
+						start: '2018-05-14 09:00',
+						end: '2018-05-19 18:00',
+						color: 'green',
+						className: 'doing'
+					},
+					{
+						id: 6,
+						title: '使用URL和字体颜色',
+						start: '2018-05-20',
+						color: 'pink',
+						url: 'http://flovel.xyz',
+						className: 'doing',
+						textColor: 'black'
+					},
+					{
+						id: 7,
+						title: '使用backgroundColor和borderColor',
+						start: '2018-05-21 09:00',
+						end: '2018-05-25 18:00',
+						backgroundColor: 'gray',
+						borderColor: 'red',
+						className: 'done'
+					},
+				]
+			});
+
+			//初始化语言选择的下拉菜单值  
+			$.each($.fullCalendar.langs, function(langCode) {
+				console.log(langCode);
+				$('#lang-selector').append(
+						$('<option/>')
+								.attr('value', langCode)
+								.prop('selected', langCode == initialLangCode)
+								.text(langCode)
+				);
+			});
+
+			//当选择一种语言时触发
+			$('#lang-selector').on('change', function() {
+				if (this.value) {
+					console.log(this.value);
+					$('#calendar').fullCalendar('option', 'lang', this.value);
+				}
+			});
+		});
+	</script>
+
+	<style>
+		/* #ddd{
+			width: 500px;
+			height: 900px;
+		} */
+	</style>
+</head>
+
+<body>
+	<div id='top'>
+        Language:
+        <select id='lang-selector'></select>
+    </div>
+
+    <div id='calendar'></div>
+</body>
+
+</html>

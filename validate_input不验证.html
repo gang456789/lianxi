@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>登录</title>
+	<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+	<script src="./jquery-validate-addmethods.js"></script>
+	<script src="./bootstrap-suggest.min.js"></script>
+	<script>
+		$(function () {
+			$("#aaa").validate();
+		})
+	</script>
+	<style>
+
+	</style>
+</head>
+
+<body>
+	<form action="" id="aaa">
+		<fieldset class="form-horizontal">
+			<div class="input-group single-picklist">
+				<input type="text" name="PatBirth" class="form-control" id="PatGender" required="required" />
+				<div class="input-group-btn">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">  
+                                			<span class="caret"></span>  
+                                		</button>
+					<ul class="dropdown-menu dropdown-menu-right" role="menu">
+					</ul>
+				</div>
+			</div>
+			<input type="submit" value="提交">
+		</fieldset>
+	</form>
+</body>
+
+</html>

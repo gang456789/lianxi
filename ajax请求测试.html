@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>ajax请求测试</title>
+	<script src="./public/jquery-1.9.1.min.js"></script>
+	<script>
+		var formData = JSON.stringify({
+			userPhone:13718055716
+		}) 
+		$.ajax({
+             type: "POST",
+             url: "http://www.gongxiangpin.com.cn/user/isExistUserPhone.htm",
+             data: formData,
+             dataType: "json",
+             success: function(data){
+				console.log(data);
+			 }
+         });
+		 $.ajax('http://www.gongxiangpin.com.cn/user/isExistUserPhone.htm', {
+			// data: {
+			// userPhone:13718055716
+			// },
+			data: formData,
+			dataType: 'jsonp',
+			crossDomain: true,
+			success: function(data) {
+				console.log(data);
+			// if(data && data.resultcode == '200'){
+			// 	console.log(data.result.today);
+			// }
+			}
+		});
+</script>
+
+	<style>
+
+	</style>
+</head>
+
+<body>
+	
+</body>
+
+</html>

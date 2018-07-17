@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+        <title>ECharts</title>
+        <!-- <link rel="stylesheet" type="text/css" href="css/main.css"/> -->
+        <script src="../public/jquery-1.9.1.min.js"></script>
+        <script src="./echarts.min.js"></script>
+        <script src="./china.js"></script>
+        <style>#china-map, #test{width:1000px; height: 1000px;margin: auto;}</style>
+    </head>
+    <body>        
+
+        <div id="china-map"></div>
+        <div id="test"></div> 
+        <script>
+            var myChart = echarts.init(document.getElementById('china-map'));
+            var option = {
+//                 tooltip: {
+// //                    show: false //不显示提示标签
+//                     formatter: '{b}', //提示标签格式
+//                     backgroundColor:"#ff7f50",//提示标签背景颜色
+//                     textStyle:{color:"#fff"} //提示标签字体颜色
+//                 },
+                // title: {
+                //     text: '全国受监测省市',
+                //     left: 'center',
+                //     textStyle: {
+                //     color: '#fff'
+                //     }
+                // },
+                series: [{
+                    type: 'map',
+                    mapType: 'china',
+                    label: {
+                        normal: {
+                            show: true,//显示省份标签
+                            textStyle:{color:"#c71585"},//省份标签字体颜色
+                            areaStyle:{
+                                backgroundColor:"#ddd",
+                            }
+                        },
+                        emphasis: {//对应的鼠标悬浮效果
+                            show: true,
+                            textStyle:{color:"#800080"}
+                        } 
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderWidth: .5,//区域边框宽度
+                            borderColor: '#009fe8',//区域边框颜色
+                            areaColor:"#ffefd5",//区域颜色
+                        },
+                        emphasis: {
+                            borderWidth: .5,
+                            borderColor: '#4b0082',
+                            areaColor:"#ffdead",
+                        }
+                    },
+                    data:[
+                        // {name:'福建', selected:true}//福建为选中状态
+                    ]
+                }],
+            };
+            myChart.setOption(option);
+            // myChart.on('mouseover', function (params) {
+            //     var dataIndex = params.dataIndex;
+            //     console.log(params);
+            // });
+        </script>
+        <!-- <script>
+            var mapData = [
+                {
+                    name:'郑州市',
+                    value:200
+                },
+                {
+                    name:'asd',
+                    value:190
+                },{
+                    name:'as',
+                    value:180
+                },
+                {
+                    name:'df',
+                    value:170
+                },
+                {
+                    name:'dfvgf',
+                    value:160
+                },
+                {
+                    name:'rtre',
+                    value:150
+                },
+                {
+                    name:'qwe',
+                    value:140
+                },
+                {
+                    name:'hm',
+                    value:130
+                },
+            ],
+            function convertData(data){
+                var res = []
+                for (var i = 0; i < data.length; i++) {
+                    var geoCoord = this.geoCoordMap[data[i].name]
+                    if (geoCoord) {
+                    res.push({
+                        name: data[i].name,
+                        value: geoCoord.concat(data[i].value)
+                    })
+                    }
+                }
+                return res
+            }
+            var myChart = echarts.init(document.getElementById('test'));
+            var Option = {
+                // title: {
+                //     text: '全国受监测省市',
+                //     left: 'center',
+                //     textStyle: {
+                //         color: '#fff'
+                //     }
+                // },
+                visualMap: {
+                    min: 0,
+                    max: 1500,
+                    left: 'left',
+                    top: 'bottom',
+                    text: [' ', 'Low'],
+                    seriesIndex: [2],
+                    inRange: {
+                    color: ['#e0ffff', '#006edd']
+                    },
+                    calculable: true,
+                    show: false
+                },
+                // geo: {
+                //     map: 'china',
+                //     roam: false,
+                //     label: {
+                //     normal: {
+                //         show: true,
+                //         textStyle: {
+                //         color: 'rgba(0,0,0,0.4)'
+                //         }
+                //     }
+                //     },
+                //     itemStyle: {
+                //     normal: {
+                //         borderColor: 'rgba(0, 0, 0, 0.2)'
+                //     },
+                //     emphasis: {
+                //         areaColor: null,
+                //         shadowOffsetX: 0,
+                //         shadowOffsetY: 0,
+                //         shadowBlur: 20,
+                //         borderWidth: 0,
+                //         shadowColor: 'rgba(0, 0, 0, 0.5)'
+                //     }
+                //     }
+                // },
+                // series: [
+                // {
+                //     type: 'scatter',
+                //     coordinateSystem: 'geo',
+                //     data: [],
+                //     symbolSize: function (val) {
+                //         return val[2] / 10
+                //     },
+                //     label: {
+                //         normal: {
+                //         formatter: '{b}',
+                //         position: 'right',
+                //         show: false
+                //         },
+                //         emphasis: {
+                //         show: true
+                //         }
+                //     },
+                //     itemStyle: {
+                //         normal: {
+                //         color: '#ffff00'
+                //         },
+                //         z: 1000
+                //     }
+                // },
+                // {
+                //     type: 'effectScatter',
+                //     coordinateSystem: 'geo',
+                //     data: convertData(this.mapData.sort(function (a, b) {
+                //         return b.value - a.value
+                //     }).slice(0, 1)),
+                //     symbolSize: function (val) {
+                //         return val[2] / 10
+                //     },
+                //     showEffectOn: 'render',
+                //     rippleEffect: {
+                //         brushType: 'stroke'
+                //     },
+                //     hoverAnimation: false,
+                //     label: {
+                //         normal: {
+                //         formatter: '{b}',
+                //         position: 'right',
+                //         show: true
+                //         }
+                //     },
+                    // itemStyle: {
+                    //     normal: {
+                    //     //   跳动小点点
+                    //     color: 'red',
+                    //     shadowBlur: 1000,
+                    //     shadowColor: '#333',
+                    //     label: {
+                    //         show: true,
+                    //         textStyle: {
+                    //         fontSize: 20
+                    //         }
+                    //     }
+                    //     },
+                    //     opacity: 1
+                    // },
+                //     z: 1000
+                // }
+                // {
+                //     name: 'categoryA',
+                //     type: 'map',
+                //     geoIndex: 0,
+                //     tooltip: {show: true},
+                //     data: [
+                        // {name: '北京', value: randomValue()},
+                        // {name: '天津', value: randomValue()},
+                        // {name: '上海', value: randomValue()},
+                        // {name: '重庆', value: randomValue()},
+                        // {name: '河北', value: randomValue()},
+                        // {name: '河南', value: randomValue()},
+                        // {name: '云南', value: randomValue()},
+                        // {name: '辽宁', value: randomValue()},
+                        // {name: '黑龙江', value: randomValue()},
+                        // {name: '湖南', value: randomValue()},
+                        // {name: '安徽', value: randomValue()},
+                        // {name: '山东', value: randomValue()},
+                        // {name: '新疆', value: randomValue()},
+                        // {name: '江苏', value: randomValue()},
+                        // {name: '浙江', value: randomValue()},
+                        // {name: '江西', value: randomValue()},
+                        // {name: '湖北', value: randomValue()},
+                        // {name: '广西', value: randomValue()},
+                        // {name: '甘肃', value: randomValue()},
+                        // {name: '山西', value: randomValue()},
+                        // {name: '内蒙古', value: randomValue()},
+                        // {name: '陕西', value: randomValue()},
+                        // {name: '吉林', value: randomValue()},
+                        // {name: '福建', value: randomValue()},
+                        // {name: '贵州', value: randomValue()},
+                        // {name: '广东', value: randomValue()},
+                        // {name: '青海', value: randomValue()},
+                        // {name: '西藏', value: randomValue()},
+                        // {name: '四川', value: randomValue()},
+                        // {name: '宁夏', value: randomValue()},
+                        // {name: '海南', value: randomValue()},
+                        // {name: '台湾', value: randomValue()},
+                        // {name: '香港', value: randomValue()},
+                        // {name: '澳门', value: randomValue()}
+                //     ]
+                // }
+                // ]
+            }
+            myChart.setOption(Option);
+        </script> -->
+    </body>
+</html>

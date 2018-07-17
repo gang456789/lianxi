@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html>
+
+<head>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link href="./bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <script src="./moment-with-locales.min.js"></script>
+    <script src="./bootstrap-datetimepicker.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="./iconfont.css"> -->
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker4').datetimepicker({
+                language: 'zh-CN',
+                weekStart: 1,
+                todayBtn: true,
+                autoclose: true,
+                todayHighlight: true,
+                startView: 2,
+                minView: 2,
+                format: 'yyyy-mm-dd',
+                forceParse: true
+            }).on('changeDate', function (ev) {
+                console.log(ev)
+                var time = ev.date.getHours() + ':' + ev.date.getMinutes();
+                console.log(time);
+                console.log(time + "星期 " + "天一二三四五六 ".charAt(new Date(time).getDay()));
+                // this.children[0].value = time + "星期 " + "天一二三四五六 ".charAt(new Date(time).getDay())
+                this.children[0].value = time;
+            });
+        });
+    </script>
+    <!-- <script>
+        var s = '2011-11-17';
+        alert("今天星期 " + "天一二三四五六 ".charAt(new Date(s).getDay()));
+    </script> -->
+</head>
+
+<body>
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <label>选择日期+时间：</label>
+                <div class='input-group date' id='datetimepicker4'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"> 
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

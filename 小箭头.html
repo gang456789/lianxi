@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>小箭头</title>
+	<script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script>
+		$(window).on('load', function () {
+			var canRun = true;
+			// $("#test").keydown(function () {
+			// 	if (!canRun) {
+			// 		// 判断是否已空闲，如果在执行中，则直接return
+			// 		return;
+			// 	}
+			// 	canRun = false;
+			// 	setTimeout(function () {
+			// 		console.log("函数节流#########应该写里面"); //应该写里面
+			// 		canRun = true;
+			// 	}, 1000);
+			// })
+			$("#test").on('input', function () {
+				if (!canRun) {
+					// 判断是否已空闲，如果在执行中，则直接return
+					return;
+				}
+				canRun = false;
+				setTimeout(function () {
+					console.log("函数节流#########应该写里面"); //应该写里面
+					canRun = true;
+				}, 1000);
+			});
+		});
+	</script>
+	<style>
+		#demo {
+			width: 100px;
+			height: 100px;
+			background-color: #ccc;
+			position: relative;
+			border: 4px solid #333;
+		}
+
+		#demo:after,
+		#demo:before {
+			border: solid transparent;
+			content: ' ';
+			height: 0;
+			left: 100%;
+			position: absolute;
+			width: 0;
+		}
+
+		#demo:after {
+			border-width: 9px;
+			border-left-color: #ccc;
+			top: 15px;
+		}
+
+		#demo:before {
+			border-width: 14px;
+			border-left-color: #333;
+			top: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="demo"></div>
+	<input type="text" id="test">
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>登录</title>
+	<script src="./public/jquery-1.9.1.min.js"></script>
+	<script>
+			var PARAM = {
+				"Token":"35b03ccd-ff31-4c6f-b5ec-a66268d9d41a9644",
+				"Cmd":"C0046",
+				"Tmd":"",
+				"UserID":"6",
+				"LoginName":"Administrator",
+				"RealName":"超级管理员",
+				"Param":{
+					"StartTime":"2018-05-05",
+					"EndTime":"2018-06-04",
+					"Title":"",
+					"DealType":1,
+					"PageNo":1,
+					"PageSize":"20",
+					"Direction":"desc"
+				}
+			}
+			var formData = JSON.stringify({
+				"Token":"35b03ccd-ff31-4c6f-b5ec-a66268d9d41a9644",
+				"Cmd":"C0046",
+				"Tmd":"",
+				"UserID":"6",
+				"LoginName":"Administrator",
+				"RealName":"超级管理员",
+				"Param":{
+					"StartTime":"2018-05-05",
+					"EndTime":"2018-06-04",
+					"Title":"",
+					"DealType":1,
+					"PageNo":1,
+					"PageSize":"20",
+					"Direction":"desc"
+				}
+			}) 
+			$.ajax({
+				url: "http://47.94.232.95:8077/InterfaceCmd.aspx",
+				type: 'POST',
+				data: JSON.stringify(PARAM),
+				timeout: 30000,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+					this.data = data;
+					console.log(data);
+				},
+				error: function (xhr, textStatus) {
+					this.data = xhr
+					console.log(xhr);
+					console.log(textStatus);
+				},
+				complete: function () {
+					console.log('wancheng');
+				}
+				})
+				// $.ajax({
+				// 	type: "POST",
+				// 	url: "http://47.94.232.95:8077/InterfaceCmd.aspx",
+				// 	data: formData,
+				// 	dataType: "json",
+				// 	success: function(data){
+				// 		console.log(data);
+				// 	}
+				// });
+</script>
+
+	<style>
+
+	</style>
+</head>
+
+<body>
+	
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>jquery-validate</title>
+	<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+	<script src="./jquery-validate-addmethods.js"></script>
+	<script type="text/javascript">
+		$.validator.setDefaults({
+			submitHandler: function () {
+				alert("提交事件!");
+			}
+		});
+
+		jQuery.validator.addMethod("isZipCode", function (value, element) {
+			var tel = /^[0-9]{6}$/;
+			return this.optional(element) || (tel.test(value));
+		}, "请正确填写您的邮政编码");
+		// $.extend($.validator.defaults,{ignore:".required"});
+		function tijiao() {
+			console.log(4444444444444444)
+			$("#ff").validate().destroy();
+			$("#ff").validate({
+				debug: true,
+				rules: {
+					spass: {
+						required: false
+					}
+				}
+			});
+		}
+
+		function baocun() {
+			console.log(888888888888);
+			$("#ff").validate().destroy();
+			$("#ff").validate({
+				debug: true
+			});
+		}
+
+		function tijiao3() {
+			console.log(33333333333333333333)
+			// $("#test").validate().destroy();
+			$("#test").validate();
+		}
+		$(function () {
+
+
+			// $("#ff").validate({ignore: ".isZipCode"});
+		})
+	</script>
+</head>
+
+<body>
+	<form id="ff" action="" method="post">
+		姓名：<input type="text" name="name" class="isZipCode required" /><br/> 密码：
+		<input type="password" name="spass" id="spass" class="required isZipCode" /><br/> 确认密码：
+		<input type="password" name="spass2" /><br/> 爱好： 上网：
+		<input type="checkbox" name="slike" value="上网" /> 唱歌：
+		<input type="checkbox" name="slike" value="唱歌" /> 编程：
+		<input type="checkbox" name="slike" value="编程" /> 书法：
+		<input type="checkbox" name="slike" value="书法" /><br/> 邮箱：
+		<input type="text" name="semail" /><br/> 头像：
+		<input type="file" name="simage" /><br/>
+		<input type="text" name="phone" value="手机好">手机号：
+		<input type="submit" value="提交" onclick="tijiao()">
+		<input type="submit" value="按钮" onclick="baocun()">
+	</form>
+	<form action="">
+		<input type="text" value="<?=$_POST['title']?" name="title">
+		<input type="submit" value="提交2">
+	</form>
+	<input type="text" value="" name="title">
+	<input type="submit" id="test" class="required isZipCode" value="提交3" onclick="tijiao3()">
+</body>
+
+</html>

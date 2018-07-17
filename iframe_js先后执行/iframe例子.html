@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>iframe测试</title>
+	<script src="../public/jquery-1.9.1.min.js"></script>
+	<script>
+		$(window).on('load', function () {
+			// console.log($(document));
+			// $(document).click(function(){
+			// 	console.log('点击页面了');
+			// })
+			// $(document).mousemove(function(){
+			// 	console.log('滑动页面了');
+			// })
+			// $(document).keydown(function(){
+			// 	console.log('键盘事件');
+			// })
+			// document.addEventListener("mousewheel", function(event) {
+			// 	console.log("滑轮滚动");	
+			// });
+			// document.onmousewheel = function(event) {
+			// 	console.log("滑轮滚动");	
+			// };
+			// $(document).bind('mousewheel', function(event) {
+			// 	console.log("滑轮滚动");		
+			// });
+			init();
+			function init(){
+				var fuji = '';
+				setTimeout(function() {
+					$('.box').html("父级元素插入了");
+					fuji = '有内容了';
+					// console.log($("#ifrId"));
+					// console.log($("#ifrId")[0].contentWindow);
+					// console.log(child.window.zifun())
+					// console.log($("#ifrId")[0].contentWindow.zifun());
+					// console.log($("#ifrId")[0].contentWindow.ziji)
+				}, 1000);
+				inkokfun();
+				// $("#ifrId").contentWindow.zifun();
+			}
+		});
+		function parentfun(){
+			console.log('调到了父页面的方法');
+		}
+		function inkokfun(){
+			console.log($("[name='child']"))
+			// $("#ifrId").contentWindow.zifun();
+		}
+	</script>
+
+	<style>
+		/* body{
+			height: 9999px;
+			width: 100%;
+		} */
+	</style>
+</head>
+
+<body>
+	<div class="box">
+
+	</div>
+	<iframe id="ifrId" src="./iframe子.html" frameborder="0" name="child"></iframe>
+</body>
+
+</html>

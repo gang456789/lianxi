@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>登录</title>
+	<script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script>
+		function q(duck,village){  
+			if(village==0)
+				console.log("总共有个鸭子",duck,village);  
+			else                  
+			{  
+				duck=(duck+1)*2; 
+				// console.log(village,duck)
+				return q(duck,village-1);  
+			}  
+		} 
+		q(2,7); 
+		// function ss(val){
+		// 	if(val == 1) {
+		// 		console.log(val)
+		// 	} else {
+		// 		return val*ss(val-1);
+		// 	}
+		// }
+		// ss(7)
+		$.holdReady(true);
+		// setTimeout(function(){
+			
+		// },3000)
+		$.getScript('testone.js',function(){
+			$.holdReady(false);
+		})
+		$(function(){
+			console.log('出发了');	
+		})
+	</script>
+</head>
+
+<body>
+	
+</body>
+
+</html>
