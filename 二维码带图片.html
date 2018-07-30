@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+  <title>二维码带图片</title>
+  <script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+  <script src="./qrcodejs-master/jquery.qrcode.min.js"></script>
+    <script>
+        $(function(){
+            function toUtf8(str) {    
+                var out, i, len, c;    
+                out = "";    
+                len = str.length;    
+                for(i = 0; i < len; i++) {    
+                    c = str.charCodeAt(i);    
+                    if ((c >= 0x0001) && (c <= 0x007F)) {    
+                        out += str.charAt(i);    
+                    } else if (c > 0x07FF) {    
+                        out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));    
+                        out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));    
+                        out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));    
+                    } else {    
+                        out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));    
+                        out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));    
+                    }    
+                }    
+                return out;
+            }
+            var width = 180,height = 180,x = width * 0.4,y = height * 0.4,lw = width * 0.2,lh = height * 0.2,conn="http://www.baidu.com";
+            $("#button").click(function(){
+                conn = $("#content").val();
+                // conn = "http://47.94.238.41:8077/eip.html";
+                console.log(toUtf8(conn))
+                sss(toUtf8(conn));
+            })
+            function sss(conn){
+                $("#qrcodeDiv").empty();
+                $("#qrcodeDiv").html('<img id="logoImg" style="display: none;" src="./qrcodejs-master/bbb.png" alt="">')
+                $("#qrcodeDiv").qrcode({
+                    width: width,
+                    height:height,
+                    text: conn
+                });
+                $("#qrcodeDiv canvas")[0].getContext('2d').drawImage($("#logoImg")[0], x, y, lw, lh);
+            }
+            sss(conn);
+        })
+    </script>
+    <style>
+        
+	</style>
+</head>
+
+<body>
+<div id="qrcodeDiv">
+     <img id="logoImg" style="display: none;" src="./qrcodejs-master/bbb.png" alt="">
+</div>
+    <input type="text" id="content">
+    <button type="button" id="button">button</button>
+</body>
+
+</html>

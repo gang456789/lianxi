@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+  <title>二维码</title>
+   <script src="./qrcodejs-master/qrcode.js"></script> 
+  <script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+  <script src="./qrcodejs-master/jquery.qrcode.min.js"></script>
+	 <script>
+		window.onload =function(){
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width : 96,//设置宽高
+            height : 96
+        });
+        qrcode.makeCode("http://www.baidu.com");
+        document.getElementById("send").onclick =function(){
+            qrcode.makeCode(document.getElementById("getval").value);
+        }
+    }
+  </script> 
+
+  <!-- <script>
+    $('#code').qrcode("http://www.baidu.com");
+    $("#code").qrcode({ 
+          render: "table", //table方式 
+          width: 200, //宽度 
+          height:200, //高度 
+          text: "www.helloweba.com" //任意内容 
+      });
+    $(function(){
+      function toUtf8(str) {    
+          var out, i, len, c;    
+          out = "";    
+          len = str.length;    
+          for(i = 0; i < len; i++) {    
+              c = str.charCodeAt(i);    
+              if ((c >= 0x0001) && (c <= 0x007F)) {    
+                  out += str.charAt(i);    
+              } else if (c > 0x07FF) {    
+                  out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));    
+                  out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));    
+                  out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));    
+              } else {    
+                  out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));    
+                  out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));    
+              }    
+          }    
+          return out;    
+      }
+      $("#sendac").click(function(){
+        $("#getvalac").empty();
+        var str = toUtf8($("#getvalac").val())
+        $('#code').qrcode(str);
+      })
+    })
+</script> -->
+
+<!-- <script>
+  $(document).ready(function() {
+        $("#qrcodeCanvas").qrcode({
+            render : "canvas",    //设置渲染方式，有table和canvas，使用canvas方式渲染性能相对来说比较好
+            text : "<span>http://www.baidu.com</span>",    //扫描二维码后显示的内容,可以直接填一个网址，扫描二维码后自动跳向该链接
+            width : "200",               //二维码的宽度
+            height : "200",              //二维码的高度
+            background : "#ffffff",       //二维码的后景色
+            foreground : "#000000",        //二维码的前景色
+            src: './qrcodejs-master/aaa.jpg'             //二维码中间的图片
+        });
+  })
+</script> -->
+    <!-- <script>
+        $(function(){
+            $('#wechartauto').qrcode({ 
+                render: "canvas", // 渲染方式有table方式（IE兼容）和canvas方式
+                width: 155, //宽度
+                height: 155, //高度
+                text: "<span>http://www.baidu.com</span>", //内容
+                typeNumber: -1,//计算模式
+                correctLevel: 2,//二维码纠错级别
+                background: "#ffffff",//背景颜色
+                foreground: "#000000" //二维码颜色
+            });
+            //设置图片的大小
+            $("#qrCodeIco").css("width","50px") 
+            $("#qrCodeIco").css("height","50px")
+            $("#qrCodeIco").attr("src","./qrcodejs-master/aaa.png")
+            var margin = ($("#wechartauto").height() - $("#qrCodeIco").height()) / 2; //控制Logo图标的位置
+            $("#qrCodeIco").css("margin", margin);
+        })
+    </script> -->
+    <style>
+        canvas{
+            padding:10px;border:1px solid #f5f5f5;box-shadow:0px 1px 1px #e5e5e5;
+        }
+	</style>
+</head>
+
+<body>
+   <div>
+    <div>二维码</div>
+    <div id="qrcode">
+    </div>
+    <input type="text" id="getval"/> <button id="send">点击更换验证码</button>
+  </div> 
+	<!-- <div>
+    <div>动态二维码</div>
+    <div id="code"></div>
+    <input type="text" id="getvalac"/> <button id="sendac">点击更换验证码</button>
+  </div> -->
+  <!-- <div>
+    <div>中间带图片的二维码</div>
+    <div id="qrcodeCanvas"></div>
+  </div> -->
+  <!-- <div>
+        <div class="margin-top-10" id="wechartauto">
+            <img id="qrCodeIco"/>
+        </div>
+  </div> -->
+</body>
+
+</html>
