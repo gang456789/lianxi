@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>设备列表ajax</title>
+	<script src="./public/jquery-1.9.1.min.js"></script>
+	 <script>
+		var user = {
+			"username":"1",
+			"password":"1"
+		}
+		$.ajax({
+			url: 'http://127.0.0.1:10090/auth/login',
+			type: 'POST',
+			data: JSON.stringify(user),
+			contentType: "application/json",
+			success: function (data, textStatus, jqXHR) {
+				console.log("aaaaaa");
+				console.log(data);
+				console.log(textStatus);
+				console.log(jqXHR)
+			},
+			error: function (xhr, textStatus) {
+				// console.log(xhr);
+				console.log("bbbbbb");
+				console.log(textStatus);
+			},
+			complete: function () {
+				console.log("cccccc");
+				console.log('wancheng');
+			}
+		})
+	</script> 
+	<!-- <script>
+		function searchStaff(){
+			var xhr;
+			if (window.XMLHttpRequest) {
+				xhr= new XMLHttpRequest();
+			} else {
+				xhr= new ActiveXObject('Microsoft.XMLHTTP');
+			}
+			xhr.open('POST','http://127.0.0.1:10090/auth/login');
+			var dataa = {
+				"username":"1",
+				"password":"1"
+			}
+			xhr.setRequestHeader('Content-Type','application/json');
+			xhr.send(JSON.stringify(dataa));
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4){
+					if(xhr.status=200){
+						var data=JSON.parse(xhr.responseText);
+						console.log(data);
+					} else {
+						console.log(xhr.status);
+					}
+				} else {
+					console.log(xhr.readyState);
+				}
+			}
+		}
+		searchStaff();
+	</script> -->
+	<style>
+
+	</style>
+</head>
+
+<body>
+	
+</body>
+
+</html>

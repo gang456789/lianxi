@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+	<title>拓展jq插件</title>
+	<script src="./public/jquery-1.9.1.min.js"></script>
+	<script src="./public/adjustment.js"></script>
+	<script>
+		$(function(){
+			// $("div").bold().setColor();
+			$("div").mix("bold","20px","red");
+			console.log($.minValue(22,55));
+			console.log($.maxValue(22,55));
+			console.log($.dateformat("yyyy-MM-dd hh:mm:ss",new Date()));
+		})
+	</script>
+</head>
+<body>
+	<div>测试节点</div>
+</body>
+</html>
+
+<!-- <script> (function(d) {
+    var iframe = d.body.appendChild(d.createElement('iframe')),
+    doc = iframe.contentWindow.document; 
+    // style the iframe with some CSS     iframe.style.cssText ="position:absolute;width:200px;height:100px;left:0px;"; 
+    doc.open().write('<body onload="'+ 　　'var d = document;d.getElementsByTagName(\'head\')[0].'+ 　　'appendChild(d.createElement(\'script\')).src'+'=\'\/path\/to\/file\'">');
+    doc.close(); //iframe onload event happens })(document);</script> -->

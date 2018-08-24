@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<title>某点测试</title>
+	<script>
+		window.onload=function(){
+      var praiseObjs = document.getElementById("navUl").getElementsByTagName("a"); 
+      function clear(){
+        for (var i = 0; i < praiseObjs.length; i++) {
+          praiseObjs[i].setAttribute("class","alink");
+        }
+      }
+      function addPraiseNum() {
+        for (var i = 0; i < praiseObjs.length; i++) {
+          (function(i){
+              praiseObjs[i].onclick=function(){
+                clear();
+                this.setAttribute("class","chgblue alink");
+              }
+          })(i);
+        }
+      }
+      addPraiseNum();
+      document.getElementById("bookright").onscroll = function(e) {
+        var mTop = document.getElementById('configure').offsetTop;
+        var climTop = document.getElementById('configure').clientHeight;
+        var climstyTop = document.getElementById('configure').style.top;
+        var scrHei = document.getElementById('configure').scrollHeight;
+        var sTop = document.body.scrollTop;
+        var sss = document.getElementById('configure').offsetParent.offsetTop;
+        console.log("offsetTop:"+mTop+"---------sTop:"+sTop+"-----------climTop:"+climTop+"-----------climstyTop:"+climstyTop+"---------scrHei:"+scrHei+"-----sss:"+sss);
+      }
+    }
+  </script>
+  <style lang="">
+    html,body{
+      height: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    ul li{
+      padding: 0;
+      margin: 0;
+    }
+    #book{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      
+    }
+    #bookleft{
+      top: 0;bottom:0;
+      overflow-y: auto;
+      color:#364149;
+      background: #fafafa;
+      border-right: 1px solid rgba(0,0,0,.07);
+      width:300px;
+      left:0px;
+      position:absolute
+    }
+    #bookright{
+      top:0;
+      right: 0;
+      bottom: 0;
+      overflow-y: auto;
+      color:#000;
+      background: #fff;
+      left:300px;
+      position:absolute
+    }
+    #intr{
+       padding:6px; 
+      background: #fff;
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      padding-left: 20px;
+      height: 40px;
+      line-height:40px;
+    }
+    #navUl {
+      padding: 0;
+      font-size: 14px;
+    }
+    #navUl ul{
+      padding-top: 0px;
+    }
+    #navUl>li{
+      height: 100px;
+      list-style: none;
+      font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    }
+    #navUl>li a{
+      display: block;
+      border-bottom:none;
+      color:#364149;
+      text-overflow:ellipsis;
+      overflow:hidden;
+    }
+    #navUl li{
+      list-style: none;
+    }
+    #navUl li a{
+      display: block;
+      padding: 10px 15px;
+      border-bottom:none;
+      color:#364149;
+      text-overflow:ellipsis;
+      overflow:hidden;
+      text-decoration: none;
+    }
+    .liwei{
+      height: 30px;
+    }
+    #navUl>li>ul{
+       padding-left:20px; 
+    }
+    #navUl>li>ul>li{
+      list-style: none;  
+    }
+    #navUl a:hover{
+      text-decoration: underline;
+    }
+    /* #navUl a:active{
+      color:#008cff;
+      text-decoration: none;
+    }  */
+    #bookHeader{
+      height: 50px;
+      line-height: 40px;
+       padding: 0 8px; 
+      z-index: 2;
+      color:#7e888b;
+    }
+    #contentcen{
+      width: 100%;
+      height: 100%;
+    }
+    #conchild{
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 15px 40px 15px;
+    }
+    p{
+      color:#333; 
+      text-indent: 2em;
+      line-height: 1.7;
+    }
+    table{
+       border-collapse :collapse ;
+    }
+    th,td{
+        width: 100px;
+        min-height:40px;
+        border:1px solid black;
+        font-size: 14px;
+        text-align: center;
+    }
+    #leftBottom{
+      overflow:hidden;
+      list-style: none;
+    }
+    #leftBottom>a{
+      text-decoration: none;
+      color: #364149;
+      font-size: 14px;
+      padding: 10px 15px;
+      height: 40px;
+      line-height: 40px;
+      display: block;
+      border-top: 1px solid rgba(0,0,0,.07);
+    }
+    .chgblue{
+      color:#008cff !important;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+	<div id="book">
+    <div id="bookleft" style="width:300px;left:0px;position:absolute">
+      <div id="intr">介绍</div>
+      <nav>
+        <ul id="navUl">
+          <li>
+            <a href="#directive" class="aLink">指令</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#directiveone" class="aLink">指令11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#directivetwo" class="aLink">指令22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#subgroup" class="aLink">组件</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#subgroupone" class="aLink">组件11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#subgrouptwo" class="aLink">组件22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#filter" class="aLink">过滤器</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#filterone" class="aLink">过滤器11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#filtertwo" class="aLink">过滤器22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#transform" class="aLink">类型转换器</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#transformone" class="aLink">类型转换器11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#transformtwo" class="aLink">类型转换器22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#configure" class="aLink">配置</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#configureone" class="aLink">配置11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#configuretwo" class="aLink">配置22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#api" class="aLink">API</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#apione" class="aLink">API11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#apitwo" class="aLink">API22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#log" class="aLink">日志</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#logone" class="aLink">日志11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#logtwo" class="aLink">日志22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#link" class="aLink">链接</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#linkone" class="aLink">链接11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#linktwo" class="aLink">链接22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#link">链接</a> 
+            <ul>
+              <li class="liwei" class="aLink">
+                <a href="#linkone" class="aLink">链接11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#linktwo" class="aLink">链接22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#link" class="aLink">链接</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#linkone" class="aLink">链接11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#linktwo" class="aLink">链接22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#link" class="aLink">链接</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#linkone" class="aLink">链接11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#linktwo" class="aLink">链接22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#link" class="aLink">链接</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#linkone" class="aLink">链接11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#linktwo" class="aLink">链接22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#link" class="aLink">链接</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#linkone" class="aLink">链接11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#linktwo" class="aLink">链接22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#link" class="aLink">链接</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#linkone" class="aLink">链接11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#linktwo" class="aLink">链接22</a> 
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#link" class="aLink">链接</a> 
+            <ul>
+              <li class="liwei">
+                <a href="#linkone" class="aLink">链接11</a> 
+              </li>
+              <li class="liwei">
+                <a href="#linktwo" class="aLink">链接22</a> 
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div id="leftBottom">
+          <a href="#">Published with GitBook</a>
+        </div>
+      </nav>
+      
+    </div>
+    <div id="bookright" style="left:300px;position:absolute">
+      <div id="bookHeader">
+        <a href="#"></a>
+        <a href="#"></a>
+      </div>
+      <div id="contentcen">
+        <div id="conchild">
+          <div class="section">
+            <h2 id="directive">指令</h2>
+            <div class="content">
+              <div>
+                <h4 id="directiveone">指令one</h4>
+                <p>人就是如此：当欲望得不到满足时，会痛苦；当欲望得到满足时，会无聊。已经拥有的东西往往不知道珍惜，没有得到的东西却总在追求。就是在这样的反复人生经历中，举目笑看花开花落，当对镜发现一缕青白，才知在不知不觉中，从身边悄然而去的岁月，和岁月留下的那抹惆怅。你也许会不甘心，你要见证你的生命的力量，所以你不断的追求，不断的求索，你为名、为利，为爱，在人生的舞台上不停的旋转着，永不停歇。所以你牺牲了很多看风景的机会，浪费了很多看风景的心情。你追求的只是一个结果，却忘了要享受过程。当你再次看到眼角的鱼尾纹时，才把自己瑟缩在角落里，开始回味，开始琢磨，开始品啜那份孤独。因为你的满足，你失去了很多个机会；因为你的不满足，你又缺少了生活中的浪漫。生活真的是难以琢磨，真的是变幻莫测。它给每个人出了一张心情试卷，也为每个人准备的不同的答案，活的洒脱，活的真诚，活的随意，活的热情的人就活的精彩；刻意的追求的人，倦怠了生命的人，只注重结果的</p>
+              </div>
+              <div>
+                <h4 id="directivetwo">指令two</h4>
+                <p>人生就像一场旅行，不必在乎目的地，在乎的，是沿途的风景，以及看风景的心情。暮暮朝朝又一载，每个人都是匆匆的行者。人生在世，各有各的生存状态，各有各的心路历程，也各有各的价值观念，这都是不能强求的。在物欲横行的今天，如果一个人注</p>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h2 id="subgroup">组件</h2>
+            <div class="content">
+              <div>
+                <h4 id="subgroupone">组件one</h4>
+                <p>东西却总在追求。就是在这样的反复人生经历中，举目笑看花开花落，当对镜发现一缕青白，才知在不知不觉中，从身边悄然而去的岁月，和岁月留下的那抹惆怅。你也许会不甘心，你要见证你的生命的力量，所以你不断的追求，不断的求索，你为名、为利，为爱，在人生的舞台上不停的旋转着，永不停歇。所以你牺牲了很多看风景的机会，浪费了很多看风景的心情。你</p>
+              </div>
+              <div>
+                <h4 id="subgrouptwo">组件two</h4>
+                <p>尾纹时，才把自己瑟缩在角落里，开始回味，开始琢磨，开始品啜那份孤独。因为你的满足，你失去了很多个机会；因为你的不满足，你又缺少了生活中的浪漫。生活真的是难以琢磨，真的是变幻莫测。它给每个人出了一张心情试卷，也为每个人准备的不同的答案，活的洒脱，活的真诚，活的随意，活的热情的人就活的精彩；刻意的追求的人，倦怠了生命的人，只注重结果</p>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h2 id="filter">过滤器</h2>
+            <div class="content">
+              <div>
+                <h4 id="filterone">过滤器one</h4>
+                <p>歌词内容，我一直幻想着可以走进那个离天堂最近的地方。然而理想的遥远让心无法到达，金钱，时间，生活，苦难，一切的一切形成了无法实施的理由。时间就是这样一天天的流失了，在每天太阳升起的时候我都会跟自己说，给自己一个快乐的理由，给心情一个放松的借口，哪怕就是真的没有钱没有时间，我一样可以做到幸福每一天。就这样把自己关在家里，躺在</p>
+              </div>
+              <div>
+                <h4 id="filtertwo">过滤器two</h4>
+                <p>角的鱼尾纹时，才把自己瑟缩在角落里，开始回味，开始琢磨，开始品啜那份孤独。因为你的满足，你失去了很多个机会；因为你的不满足，你又缺少了生活中的浪漫。生活真的是难以琢磨，真的是变幻莫测。它给每个人出了一张心情试卷，也为每个人准备的不同的答案，活的洒脱，活的真诚，活的随意，活的热情的人就活的精彩；刻意的追求的</p>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h2 id="transform">类型转换器</h2>
+            <div class="content">
+              <div>
+                <h4 id="transformone">类型转换器one</h4>
+                <p>文字放在这里，把自己的心情堆砌在这里，无论是什么，只要自己喜欢就可以写下来，就可以收藏起来。一如此时写下得对你的心绪，那样的随意，</p>
+              </div>
+              <div>
+                <h4 id="transformtwo">类型转换器two</h4>
+                <p>以就这样的把自己的文字放在这里，把自己的心情堆砌在这里，无论是什么，只要自己喜欢就可以写下来，就可以收藏起来。一如此时写下得对你的心绪，那样的随意，随意看到的人不知道你是谁，你自己看到也不知道我是谁。</p>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h2 id="configure">配置</h2>
+            <div class="content">
+              <div>
+                <h4 id="configureone">配置one</h4>
+                <p>会错过太多，而真正的天路是在死去之后，我们那个时候是否真的会踏上天路，没有人知道。总是想在不违背自己意愿又不伤害别人利益的情况下，可以尽量多一点</p>
+                <table>
+                  <tr>
+                    <th>语文</th>
+                    <td>7:00-7:40</th>
+                    <td>7:50-8:30</td>
+                  </tr>
+                  <tr>
+                    <th>数学</th>
+                    <td>7:00-7:40</td>
+                    <td>7:50-8:30</td>
+                  </tr>
+                  <tr>
+                    <th>英文</th>
+                    <td>7:00-7:40</td>
+                    <td>7:50-8:30</td>
+                  </tr>
+                </table>
+
+              </div>
+              <div>
+                <h4 id="configuretwo">配置two</h4>
+                <p>们要珍惜生命中的每一天，不要等秋天过了感叹春天里的绿色，在冬天的时候渴望夏的温暖。在人生的道路上，不要为了匆忙得赶路而忽视了沿途的风景。</p>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h2 id="api">API</h2>
+            <div class="content">
+              <div>
+                <h4 id="apione">APIone</h4>
+                <p>行中遇到的每一个人，每一件事与每一个美丽景色，都有可能成为一生中难忘的风景。一路走来，我们无法猜测将是迎接什么样的风景，没有预兆目的地在哪，可是前进的脚步却始终不能停下，因为时间不允许我们在任何地方停留，只有在前进中不断学会选择，学会体</p>
+              </div>
+              <div>
+                <h4 id="apitwo">APItwo</h4>
+                <p>风景，就像人生的快乐幸福，能够将生命点亮，丰富人生的美好记忆。而崎岖泥泞的阻碍，就像人生的困惑悲伤，会让前进的脚步沉重，可是也同时磨砺意志，</p>
+                <table border="4" cellpadding="20" cellsacing="0" width="700" height="300" bordercolor="#ddd">
+                  <tr bgcolor="yellow">
+                    <td colspan="3">表名</td>
+                  </tr>
+                  <tr>
+                    <td>${}</td>
+                    <td>${}</td>
+                    <td>${}</td>
+                  </tr>
+                  <tr>
+                    <td>${}</td>
+                    <td>${}</td>
+                    <td>${}</td>
+                  </tr>
+                  <tr>
+                    <td>${}</td>
+                    <td>${}</td>
+                    <td>${}</td>
+                  </tr>
+                  <tr>
+                    <td>${}</td>
+                    <td>${}</td>
+                    <td>${}</td>
+                  </tr>
+                  <!-- <tr>
+                    <td rowspan="3" bgcolor="green">影视作品</td>
+                    <td>2009</td>
+                    <td>游龙西风</td>
+                  </tr>
+
+                  <tr>
+                    <td>2008</td>
+                    <td>三国之建龙玺人家</td>
+                  </tr>
+
+                  <tr>
+                    <td>2007</td>
+                    <td>投名状</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3" bgcolor="blue">音乐专辑</td>
+                    <td>2003</td>
+                    <td>如果有一天</td>
+                  </tr>
+                  <tr>
+                    <td>2002</td>
+                    <td>美丽的一天</td>
+                  </tr>
+                  <tr>
+                    <td>2001/td>
+                    <td>天吗兄控</td>
+                  </tr> -->
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h2 id="log">日志</h2>
+            <div class="content">
+              <div>
+                <h4 id="logone">日志one</h4>
+                <p>就像人生的快乐幸福，能够将生命点亮，丰富人生的美好记忆。而崎岖泥泞的阻碍，就像人生的困惑悲伤，会让前进的脚步沉重，可是也同时磨砺意志，积累经验，使人能更好的迈开下一步。旅行不会因为美丽的风景就终止，再华丽绚烂也是要经过，如果想在此刻就停</p>
+              </div>
+              <div>
+                <h4 id="logtwo">日志two</h4>
+                <p>的风景就终止，再华丽绚烂也是要经过，如果想在此刻就停留，那么就会错过更多更好的风景了。同样，不管是多么可怕的风雨，也不会是持续整个旅行，坚持前进的脚步，相信不久就会迎来彩虹。用欣赏风景的心情迈开每一步，将阳光或是风雨都收进背</p>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h2 id="link">链接</h2>
+            <div class="content">
+              <div>
+                <h4 id="linkone">链接one</h4>
+                <p>行中，走过的路都将成为背后的风景，不能回头不能停留，那么就不如享受每一刻的感觉，欣赏每一处的风景。当我们要想欣赏左边的群山，就要放弃右边的平原；要想欣赏右边的大海，就得放弃左边的小溪。有得必有失这是大自然永恒的规律，我们要懂</p>
+              </div>
+              <div>
+                <h4 id="linktwo">链接two</h4>
+                <p>陶醉于群山时，不要想着平原，沉迷于小溪时，不要还想着大海。在人生这趟旅行中，我们会得到很多很多，我们也会失去很多很多，但是我们不会为我们的失去而后悔。因为我们我们曾经奋斗过，曾经拥有过，我们作过人生这趟旅行，我们感受过生活的酸甜苦辣</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</body>
+</html>

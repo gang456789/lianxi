@@ -5,40 +5,36 @@
 	<title>登录</title>
 	<script src="./public/jquery-1.9.1.min.js"></script>
 	<script>
-			var PARAM = {
-				"Token":"35b03ccd-ff31-4c6f-b5ec-a66268d9d41a9644",
-				"Cmd":"C0046",
+			// var PARAM = {
+			// 	"Token":"0a03a5e0-e84e-4e7c-8aab-64a1fd0d48127896",
+			// 	"Cmd":"C0046",
+			// 	"Tmd":"",
+			// 	"UserID":"6",
+			// 	"LoginName":"Administrator",
+			// 	"RealName":"超级管理员",
+			// 	"Param":{
+			// 		"StartTime":"2018-05-05",
+			// 		"EndTime":"2018-06-04",
+			// 		"Title":"",
+			// 		"DealType":1,
+			// 		"PageNo":1,
+			// 		"PageSize":"20",
+			// 		"Direction":"desc"
+			// 	}
+			// } 
+
+
+
+
+			var PARAM ={
+				"Token":"",
+				"Cmd":"C0001",
 				"Tmd":"",
-				"UserID":"6",
-				"LoginName":"Administrator",
-				"RealName":"超级管理员",
-				"Param":{
-					"StartTime":"2018-05-05",
-					"EndTime":"2018-06-04",
-					"Title":"",
-					"DealType":1,
-					"PageNo":1,
-					"PageSize":"20",
-					"Direction":"desc"
-				}
+				"UserID":"",
+				"LoginName":"",
+				"RealName":"",
+				"Param":{"LoginName":"administrator","UserPass":"passeip"}
 			}
-			var formData = JSON.stringify({
-				"Token":"35b03ccd-ff31-4c6f-b5ec-a66268d9d41a9644",
-				"Cmd":"C0046",
-				"Tmd":"",
-				"UserID":"6",
-				"LoginName":"Administrator",
-				"RealName":"超级管理员",
-				"Param":{
-					"StartTime":"2018-05-05",
-					"EndTime":"2018-06-04",
-					"Title":"",
-					"DealType":1,
-					"PageNo":1,
-					"PageSize":"20",
-					"Direction":"desc"
-				}
-			}) 
 			$.ajax({
 				url: "http://47.94.232.95:8077/InterfaceCmd.aspx",
 				type: 'POST',
@@ -58,6 +54,27 @@
 					console.log('wancheng');
 				}
 				})
+
+
+				
+
+				var formData = JSON.stringify({
+				"Token":"35b03ccd-ff31-4c6f-b5ec-a66268d9d41a9644",
+				"Cmd":"C0046",
+				"Tmd":"",
+				"UserID":"6",
+				"LoginName":"Administrator",
+				"RealName":"超级管理员",
+				"Param":{
+					"StartTime":"2018-05-05",
+					"EndTime":"2018-06-04",
+					"Title":"",
+					"DealType":1,
+					"PageNo":1,
+					"PageSize":"20",
+					"Direction":"desc"
+				}
+			})
 				// $.ajax({
 				// 	type: "POST",
 				// 	url: "http://47.94.232.95:8077/InterfaceCmd.aspx",

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<head>
+	<script src="./public/jquery-1.9.1.min.js"></script>
+	<script src="./public/jquery.cookie.js"></script>
+	<script>
+		$(function(){
+			var Public = {
+				judgeExplorer: function () {
+					$.cookie("cookie",true);
+					if ($.cookie("cookie")) {
+						return "old";
+					} else {
+						return "new";
+					}
+				}
+			}
+			var Storage = {
+				set: function (key, val) {
+					var v;
+					if (key && (val || val.length > 0)) {
+						v = typeof val === 'object' ? JSON.stringify(val) : val;
+						if (Public.judgeExplorer() == "old") {
+							$.cookie(key, v);
+						} else {
+							window.sessionStorage.setItem(key, v);
+						}
+					} else {
+
+					}
+				},
+				get: function (key, type) {
+					var result;
+					if (key) {
+						if (Public.judgeExplorer() == "old") {
+							if (key == 'config')
+								result = $.cookie(key);
+							else
+								result = $.cookie(key);
+						} else {
+							result = window.sessionStorage.getItem(key);
+						}
+						if (result && result != null) {
+							return type ? JSON.parse(result) : result;
+						} else {
+
+						}
+					} else {
+						console.error('传入的参数:' + key + '错误！');
+					}
+				},
+				del: function (key) {
+					if (key.length <= 0) {
+						console.error('传入的参数:' + key + '错误！');
+						return;
+					}
+					if (Public.judgeExplorer() == "old") {
+						$.cookie(key, null);
+					} else {
+						window.sessionStorage.removeItem(key);
+					}
+				}
+			}
+			Storage.set("test","valuezhi")
+			console.log(Storage.get("test"))
+		})
+	</script>
+</head>
+	
+<body>
+</body>
+	
+</html>

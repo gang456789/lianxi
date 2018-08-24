@@ -1,45 +1,37 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
 <head>
 	<title>ajax请求测试</title>
 	<script src="./public/jquery-1.9.1.min.js"></script>
+	
 	<script>
-		var formData = JSON.stringify({
-			userPhone:13718055716
-		}) 
+	var formData = JSON.stringify({
+		"address":"aaa22",
+		"name":"bbb22"
+	});
+
+	function req() {
 		$.ajax({
              type: "POST",
-             url: "http://www.gongxiangpin.com.cn/user/isExistUserPhone.htm",
+             url: "http://127.0.0.1:10090/shop/add",
+			 headers: {
+				 "token" : "a74ab9fc7def400db12a9bef059c4169",
+				 "Content-Type" : "application/json"
+			 },
              data: formData,
              dataType: "json",
              success: function(data){
 				console.log(data);
 			 }
          });
-		 $.ajax('http://www.gongxiangpin.com.cn/user/isExistUserPhone.htm', {
-			// data: {
-			// userPhone:13718055716
-			// },
-			data: formData,
-			dataType: 'jsonp',
-			crossDomain: true,
-			success: function(data) {
-				console.log(data);
-			// if(data && data.resultcode == '200'){
-			// 	console.log(data.result.today);
-			// }
-			}
-		});
-</script>
-
-	<style>
-
-	</style>
+	}
+	</script>
+	
 </head>
 
 <body>
-	
+	submit:<input type="button" value="button" onclick="req()" />
 </body>
 
 </html>
